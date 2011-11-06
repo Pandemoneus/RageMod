@@ -1,0 +1,8 @@
+name: RageMod
+main: net.rageland.ragemod.RageMod
+version: 0.1
+depend: [Vault]
+commands:
+  lot:
+    description: N/A
+    usage: /lot
