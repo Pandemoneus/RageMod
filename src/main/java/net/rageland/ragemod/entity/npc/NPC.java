@@ -26,7 +26,7 @@ import org.martin.bukkit.npclib.NPCEntity;
  *         classes for Ragemod-specific code
  * 
  */
-public class NPC extends NPCEntity {
+public interface NPC {
 	private int lastTargetId;
 	private long lastBounceTick;
 	private int lastBounceId;

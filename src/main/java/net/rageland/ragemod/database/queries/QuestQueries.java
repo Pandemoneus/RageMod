@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.bukkit.inventory.ItemStack;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.quest.Flags;
 import net.rageland.ragemod.quest.QuestOld;
 import net.rageland.ragemod.quest.QuestData;
@@ -19,10 +19,10 @@ import net.rageland.ragemod.quest.RewardQuest;
 
 public class QuestQueries {
 	
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 	
-	public QuestQueries(RageDB rageDB, RageMod plugin)
+	public QuestQueries(DatabaseHandler rageDB, RageMod plugin)
 	{
 		this.rageDB = rageDB;
 		this.plugin = plugin;

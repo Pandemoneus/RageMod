@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.places.region.Location2D;
 
 import org.bukkit.Location;

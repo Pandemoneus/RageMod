@@ -1,7 +1,10 @@
-package net.rageland.ragemod.places;
+package net.rageland.ragemod.places.owned;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Owner;
+import net.rageland.ragemod.places.LotType;
+import net.rageland.ragemod.places.OwnedPlace;
+import net.rageland.ragemod.places.PlaceType;
 import net.rageland.ragemod.places.region.Region3D;
 
 /**
@@ -21,7 +24,7 @@ public class Lot extends OwnedPlace {
 	 * @param name the name
 	 * @param owners the owners
 	 */
-	public Lot(RageMod plugin, LotType type, Region3D boundaries, String name, Owner... owners) {
+	public Lot(final RageMod plugin, final LotType type, final Region3D boundaries, final String name, final Owner... owners) {
 		super(plugin, PlaceType.LOT, boundaries, name, owners);
 		setLotType(type);
 		// TODO: set entry and exit message
@@ -31,7 +34,7 @@ public class Lot extends OwnedPlace {
 	 * Sets the type of the lot.
 	 * @param type the type
 	 */
-	public void setLotType(LotType type) {
+	public void setLotType(final LotType type) {
 		this.type = type;
 	}
 	
@@ -47,7 +50,7 @@ public class Lot extends OwnedPlace {
 	 * Sets the quarter the lot belongs to.
 	 * @param quarter the quarter
 	 */
-	public void setQuarter(Quarter quarter) {
+	public void setQuarter(final Quarter quarter) {
 		this.quarter = quarter;
 	}
 	

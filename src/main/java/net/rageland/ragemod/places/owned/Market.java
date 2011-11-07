@@ -1,9 +1,10 @@
-package net.rageland.ragemod.places;
+package net.rageland.ragemod.places.owned;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.npc.NPC;
 import net.rageland.ragemod.entity.Owner;
 import net.rageland.ragemod.entity.npc.Trader;
+import net.rageland.ragemod.places.LotType;
 import net.rageland.ragemod.places.region.Region3D;
 
 /**
@@ -18,7 +19,7 @@ public class Market extends Lot {
 	 * @param name the name
 	 * @param owners the onwers
 	 */
-	public Market(RageMod plugin, Region3D boundaries, String name, Owner... owners) {
+	public Market(final RageMod plugin, final Region3D boundaries, final String name, final Owner... owners) {
 		super(plugin, LotType.MARKET, boundaries, name, owners);
 	}
 	
@@ -28,7 +29,7 @@ public class Market extends Lot {
 	 * @param npc the trader
 	 */
 	@Override
-	public void addNPC(NPC npc) {
+	public void addNPC(final NPC npc) {
 		if (!(npc instanceof Trader))
 			return;
 		

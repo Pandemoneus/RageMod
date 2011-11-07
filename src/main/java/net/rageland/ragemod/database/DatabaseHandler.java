@@ -7,6 +7,8 @@ package net.rageland.ragemod.database;
 //		 Every minute or so, process all the updates.  This would keep multiple updates from going to the database multiple times.
 
 import java.sql.*;
+
+import net.rageland.ragemod.Handler;
 import net.rageland.ragemod.RageConfig;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.database.queries.FactionQueries;
@@ -17,7 +19,7 @@ import net.rageland.ragemod.database.queries.PlayerQueries;
 import net.rageland.ragemod.database.queries.TaskQueries;
 import net.rageland.ragemod.database.queries.TownQueries;
 
-public class RageDB {
+public class DatabaseHandler extends Handler {
 
 	private JDCConnectionDriver connectionDriver;
 	protected String url;
@@ -36,7 +38,7 @@ public class RageDB {
 	public NPCQueries npcQueries;
 	public NPCTownQueries npcTownQueries;
 
-	public RageDB(RageMod instance, RageConfig config) {
+	public DatabaseHandler(RageMod instance, RageConfig config) {
 		plugin = instance;
 		townQueries = new TownQueries(this, this.plugin);
 		lotQueries = new LotQueries(this, this.plugin);

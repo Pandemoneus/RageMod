@@ -10,7 +10,7 @@ import org.bukkit.World;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.places.region.Region2D;
 import net.rageland.ragemod.places.region.Region3D;
 import net.rageland.ragemod.utilities.GeneralUtilities;

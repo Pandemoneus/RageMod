@@ -1,9 +1,11 @@
-package net.rageland.ragemod.places;
+package net.rageland.ragemod.places.owned;
 
 import java.util.HashSet;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Owner;
+import net.rageland.ragemod.places.OwnedPlace;
+import net.rageland.ragemod.places.PlaceType;
 import net.rageland.ragemod.places.region.Region3D;
 
 /**
@@ -13,7 +15,7 @@ import net.rageland.ragemod.places.region.Region3D;
 public class Town extends OwnedPlace {
 	private final HashSet<Quarter> quarters = new HashSet<Quarter>();
 
-	public Town(RageMod plugin, Region3D boundaries, String name, Owner... owners) {
+	public Town(final RageMod plugin, final Region3D boundaries, final String name, final Owner... owners) {
 		super(plugin, PlaceType.TOWN, boundaries, name, owners);
 		// TODO: set entry and exit message
 	}
@@ -23,7 +25,7 @@ public class Town extends OwnedPlace {
 	 * If the quarter belonged to another town before, it will now belong to this one.
 	 * @param quarter the quarter
 	 */
-	public void addQuarter(Quarter quarter) {
+	public void addQuarter(final Quarter quarter) {
 		if (quarter == null)
 			return;
 		
@@ -35,7 +37,7 @@ public class Town extends OwnedPlace {
 	 * Removes a quarter from this town.
 	 * @param quarter the quarter
 	 */
-	public void removeQuarter(Quarter quarter) {
+	public void removeQuarter(final Quarter quarter) {
 		quarters.remove(quarter);
 		quarter.setTown(null);
 	}

@@ -14,7 +14,7 @@ import net.rageland.ragemod.data.NPCLocation;
 import net.rageland.ragemod.data.NPCInstance.NPCType;
 import net.rageland.ragemod.entity.npc.NPCData;
 import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 
 public class NPCCommands {
 

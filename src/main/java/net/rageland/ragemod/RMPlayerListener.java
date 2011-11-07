@@ -13,7 +13,7 @@ import net.rageland.ragemod.commands.RageCommands;
 import net.rageland.ragemod.commands.TownCommands;
 import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 import org.bukkit.ChatColor;

@@ -8,7 +8,7 @@ import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.entity.npc.NPC;
 import net.rageland.ragemod.entity.npc.NPCHandler;
 import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.quest.KillCreatureQuest;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 

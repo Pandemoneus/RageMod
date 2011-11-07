@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.npc.NPC;
 import net.rageland.ragemod.places.region.Region3D;
+import net.rageland.ragemod.pvp.PvPStatus;
 import net.rageland.ragemod.text.Title;
 
 /**
@@ -24,6 +25,7 @@ public abstract class BasicPlace implements Place, Title {
 	private String name;
 	// TODO: Config based standard title color
 	private ChatColor nameColor = ChatColor.YELLOW;
+	private PvPStatus pvp = PvPStatus.PEACE;
 	
 	// NPCs
 	private final HashSet<NPC> npcs = new HashSet<NPC>();
@@ -32,7 +34,7 @@ public abstract class BasicPlace implements Place, Title {
 	private String entryMessage = "";
 	private String exitMessage = "";
 	
-	protected BasicPlace(RageMod plugin, PlaceType type, Region3D boundaries, String name) {
+	protected BasicPlace(final RageMod plugin, final PlaceType type, final Region3D boundaries, final String name) {
 		this.plugin = plugin;
 		this.type = type;
 		this.boundaries = boundaries;
@@ -47,7 +49,7 @@ public abstract class BasicPlace implements Place, Title {
 		return boundaries;
 	}
 	
-	public void setBoundaries(Region3D boundaries) {
+	public void setBoundaries(final Region3D boundaries) {
 		if (boundaries == null || boundaries.hasZeroVolume()) {
 			return;
 		}
@@ -59,7 +61,7 @@ public abstract class BasicPlace implements Place, Title {
 		return name;
 	}
 	
-	public void setName(String name) {
+	public void setName(final String name) {
 		if (name == null || name.isEmpty()) {
 			return;
 		}
@@ -77,7 +79,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * The message must not be null. An empty string is allowed though.
 	 * @param message the entry message
 	 */
-	protected void setEntryMessage(String message) {
+	protected void setEntryMessage(final String message) {
 		if (message == null) {
 			return;
 		}
@@ -95,7 +97,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * The message must not be null. An empty string is allowed though.
 	 * @param message the entry message
 	 */
-	protected void setExitMessage(String message) {
+	protected void setExitMessage(final String message) {
 		if (message == null) {
 			return;
 		}
@@ -115,7 +117,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Defines in which color the title should be colored.
 	 * @param color the color
 	 */
-	public void setTitleColor(ChatColor color) {
+	public void setTitleColor(final ChatColor color) {
 		nameColor = color;
 	}
 	
@@ -131,7 +133,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Adds a NPC to the place.
 	 * @param npc the NPC
 	 */
-	public void addNPC(NPC npc) {
+	public void addNPC(final NPC npc) {
 		if (npc == null)
 			return;
 		
@@ -142,8 +144,24 @@ public abstract class BasicPlace implements Place, Title {
 	 * Removes a NPC from the place.
 	 * @param npc the NPC
 	 */
-	public void removeNPC(NPC npc) {
+	public void removeNPC(final NPC npc) {
 		npcs.remove(npc);
+	}
+	
+	/**
+	 * Returns the pvp status of the place.
+	 * @return the pvp status of the place
+	 */
+	public PvPStatus getPvpStatus() {
+		return pvp;
+	}
+	
+	/**
+	 * Sets the pvp status of the place.
+	 * @param status the status
+	 */
+	public void setPvpStatus(final PvPStatus status) {
+		pvp = status;
 	}
 	
 	/**

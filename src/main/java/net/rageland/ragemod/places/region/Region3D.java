@@ -23,7 +23,7 @@ public class Region3D {
 	 * @param startLoc the first point
 	 * @param endLoc the second point
 	 */
-	public Region3D(Location startLoc, Location endLoc) {
+	public Region3D(final Location startLoc, final Location endLoc) {
 		this(startLoc.getWorld(), startLoc.getBlockX(), startLoc.getBlockY(), startLoc.getBlockZ(), endLoc.getBlockX(), endLoc.getBlockY(), endLoc.getBlockZ());
 
 		if (!(startLoc.getWorld().equals(endLoc.getWorld()))) {
@@ -43,7 +43,7 @@ public class Region3D {
 	 * @param y2 the second y coordinate
 	 * @param z2 the second z coordinate
 	 */
-	public Region3D(World world, int x1, int y1, int z1, int x2, int y2, int z2) {
+	public Region3D(final World world, final int x1, final int y1, final int z1, final int x2, final int y2, final int z2) {
 		World tmpWorld = world;
 		
 		if (tmpWorld == null) {
@@ -71,7 +71,7 @@ public class Region3D {
 	 * @param area the area to check
 	 * @return true if the area is within this area, otherwise false
 	 */
-	public boolean isAreaWithinArea(Region3D area) {
+	public boolean isAreaWithinArea(final Region3D area) {
 		return (containsLoc(area.highPoint) && containsLoc(area.lowPoint));
 	}
 
@@ -81,7 +81,7 @@ public class Region3D {
 	 * @param loc the location to check
 	 * @return true if the location is within this cuboid, otherwise false
 	 */
-	public boolean containsLoc(Location loc) {
+	public boolean containsLoc(final Location loc) {
 		if (loc == null || !loc.getWorld().equals(highPoint.getWorld())) {
 			return false;
 		}
@@ -152,6 +152,17 @@ public class Region3D {
 		final Location temp = getRandomLocation();
 		
 		return new Location(temp.getWorld(), temp.getBlockX() + 0.5, temp.getBlockY() + 0.5, temp.getBlockZ() + 0.5);
+	}
+	
+	/**
+	 * Determines a random location inside the cuboid that is suitable for player spawning and returns it.
+	 * 
+	 * @return a random location inside the cuboid that is suitable for player spawning
+	 */
+	public Location getRandomLocationForPlayers() {
+		final Location temp = getRandomLocationForMobs();
+		
+		return new Location(temp.getWorld(), temp.getBlockX(), temp.getBlockY() + 1, temp.getBlockZ());
 	}
 
 	/**

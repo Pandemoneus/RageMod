@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 
 public class FactionQueries {
 
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 
-	public FactionQueries(RageDB rageDB, RageMod plugin) {
+	public FactionQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 	}

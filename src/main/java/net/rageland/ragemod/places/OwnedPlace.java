@@ -8,21 +8,22 @@ import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Owner;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.region.Region3D;
+import net.rageland.ragemod.pvp.Contestable;
 
 /**
  * This class provides methods for places that have an owner.
  * @author Pandemoneus
  */
-public abstract class OwnedPlace extends BasicPlace implements Rentable {
+public abstract class OwnedPlace extends BasicPlace implements Rentable, Contestable {
 	
 	private final HashSet<Owner> owners = new HashSet<Owner>();
 	private double rent = 0;
 
-	protected OwnedPlace(RageMod plugin, PlaceType type, Region3D boundaries, String name, Owner... owners) {
+	protected OwnedPlace(final RageMod plugin, final PlaceType type, final Region3D boundaries, final String name, final Owner... owners) {
 		this(plugin, type, boundaries, name, 0, owners);
 	}
 	
-	protected OwnedPlace(RageMod plugin, PlaceType type, Region3D boundaries, String name, double rent, Owner... owners) {
+	protected OwnedPlace(final RageMod plugin, final PlaceType type, final Region3D boundaries, final String name, final double rent, final Owner... owners) {
 		super(plugin, type, boundaries, name);
 		addOwners(owners);
 		setRent(rent);
@@ -33,7 +34,7 @@ public abstract class OwnedPlace extends BasicPlace implements Rentable {
 	 * @param owner the owner to check
 	 * @return true if the owner owns this place, otherwise false
 	 */
-	public boolean isOwner(Owner owner) {
+	public boolean isOwner(final Owner owner) {
 		return owners.contains(owner);
 	}
 	
@@ -49,7 +50,7 @@ public abstract class OwnedPlace extends BasicPlace implements Rentable {
 	 * Removes an owner from the list of owners of the place.
 	 * @param owner the owner
 	 */
-	public void removeOwner(Owner owner) {
+	public void removeOwner(final Owner owner) {
 		owners.remove(owner);
 	}
 	
@@ -57,7 +58,7 @@ public abstract class OwnedPlace extends BasicPlace implements Rentable {
 	 * Adds owners to the list of owners of the place.
 	 * @param owners the owners to add
 	 */
-	public void addOwners(Owner... owners) {
+	public void addOwners(final Owner... owners) {
 		if (owners == null) {
 			return;
 		}
@@ -81,7 +82,7 @@ public abstract class OwnedPlace extends BasicPlace implements Rentable {
 	 * Sets the rent of the place.
 	 * @param rent the rent
 	 */
-	public void setRent(double rent) {
+	public void setRent(final double rent) {
 		this.rent = rent;
 	}
 	
@@ -93,7 +94,7 @@ public abstract class OwnedPlace extends BasicPlace implements Rentable {
 		return rent;
 	}
 	
-	private RentResult payRent(Owner owner) {
+	private RentResult payRent(final Owner owner) {
 		if (rent == 0.0)
 			return RentResult.NO_RENT;
 		

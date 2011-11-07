@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import net.rageland.ragemod.data.NPCInstance;
 import net.rageland.ragemod.entity.player.PlayerData;
 
-public class SpeechNPC extends NPC {
+public class SpeechNPC extends BasicNPC {
 
 	public SpeechNPC(NPCInstance instance) {
 		super(instance);

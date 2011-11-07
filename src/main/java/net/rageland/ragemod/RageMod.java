@@ -9,9 +9,9 @@ import net.rageland.ragemod.data.Factions;
 import net.rageland.ragemod.data.Lots;
 import net.rageland.ragemod.data.Tasks;
 import net.rageland.ragemod.data.Towns;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.npc.NPCHandler;
-import net.rageland.ragemod.entity.player.Players;
+import net.rageland.ragemod.entity.player.PlayerHandler;
 import net.rageland.ragemod.quest.QuestManager;
 import net.rageland.ragemod.text.Languages;
 import net.rageland.ragemod.text.Message;
@@ -49,7 +49,7 @@ public class RageMod extends JavaPlugin {
 
 	// Global data
 	public Lots lots;
-	public Players players;
+	public PlayerHandler players;
 	public Towns towns;
 	public Tasks tasks;
 	public Factions factions;
@@ -57,7 +57,7 @@ public class RageMod extends JavaPlugin {
 
 	// Semi-static data and methods
 	public RageConfig config;
-	public RageDB database;
+	public DatabaseHandler database;
 	public RageZones zones;
 	public Message message;
 	public NPCHandler npcManager;
@@ -166,11 +166,11 @@ public class RageMod extends JavaPlugin {
 		blockListener = new RMBlockListener(this);
 		entityListener = new RMEntityListener(this);
 		config = new RageConfig(this);
-		database = new RageDB(this, config);
+		database = new DatabaseHandler(this, config);
 		logger = new Log(this);
 
 		lots = new Lots(this);
-		players = new Players(this);
+		players = new PlayerHandler(this);
 		towns = new Towns(this);
 		tasks = new Tasks(this);
 		factions = new Factions();

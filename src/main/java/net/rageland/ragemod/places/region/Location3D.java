@@ -67,7 +67,7 @@ public class Location3D extends Location2D {
 	 * Sets the yaw of the location.
 	 * @param yaw the yaw
 	 */
-	public void setYaw(float yaw) {
+	public void setYaw(final float yaw) {
 		this.yaw = yaw;
 	}
 	
@@ -83,7 +83,7 @@ public class Location3D extends Location2D {
 	 * Sets the pitch of the location.
 	 * @param pitch the pitch
 	 */
-	public void setPitch(float pitch) {
+	public void setPitch(final float pitch) {
 		this.pitch = pitch;
 	}
 	
@@ -121,12 +121,12 @@ public class Location3D extends Location2D {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (!(o instanceof Location3D)) {
 			return false;
 		}
 		
-		Location3D loc = (Location3D) o;
+		final Location3D loc = (Location3D) o;
 		
 		return ((Location2D) this).equals(o) && this.getBlockY() == loc.getBlockY();
 	}

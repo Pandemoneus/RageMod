@@ -1,5 +1,7 @@
 package net.rageland.ragemod.quest;
 
-public class QuestHandler {
+import net.rageland.ragemod.Handler;
+
+public class QuestHandler extends Handler {
 
 }

@@ -8,14 +8,14 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 
 public class TaskQueries {
 
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 
-	public TaskQueries(RageDB rageDB, RageMod plugin) {
+	public TaskQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 	}

@@ -14,7 +14,7 @@ public interface Place {
 	 * Must not be null.
 	 * @param boundaries the boundaries
 	 */
-	public void setBoundaries(Region3D boundaries);
+	public void setBoundaries(final Region3D boundaries);
 	
 	/**
 	 * Returns the boundaries of the place.
@@ -27,7 +27,7 @@ public interface Place {
 	 * Must not be null.
 	 * @param name the name
 	 */
-	public void setName(String name);
+	public void setName(final String name);
 	
 	/**
 	 * Returns the name of the place.

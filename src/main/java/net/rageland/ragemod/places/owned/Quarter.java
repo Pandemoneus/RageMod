@@ -1,9 +1,11 @@
-package net.rageland.ragemod.places;
+package net.rageland.ragemod.places.owned;
 
 import java.util.HashSet;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Owner;
+import net.rageland.ragemod.places.OwnedPlace;
+import net.rageland.ragemod.places.PlaceType;
 import net.rageland.ragemod.places.region.Region3D;
 
 public class Quarter extends OwnedPlace {
@@ -19,7 +21,7 @@ public class Quarter extends OwnedPlace {
 	 * @param name the name of the quarter
 	 * @param owners the owners of the quarter
 	 */
-	public Quarter(RageMod plugin, Town town, Region3D boundaries, String name, Owner... owners) {
+	public Quarter(final RageMod plugin, final Town town, final Region3D boundaries, final String name, final Owner... owners) {
 		super(plugin, PlaceType.QUARTER, boundaries, name, owners);
 		setTown(town);
 		// TODO: Config based messages
@@ -31,7 +33,7 @@ public class Quarter extends OwnedPlace {
 	 * Sets the town this quarter belongs to.
 	 * @param town the town
 	 */
-	public void setTown(Town town) {
+	public void setTown(final Town town) {
 		this.town = town;
 	}
 	
@@ -47,11 +49,11 @@ public class Quarter extends OwnedPlace {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (!(o instanceof Quarter))
 			return false;
 		
-		Quarter q = (Quarter) o;
+		final Quarter q = (Quarter) o;
 		return getName().equals(q.getName()) && town.equals(q.town);
 	}
 	
@@ -59,7 +61,7 @@ public class Quarter extends OwnedPlace {
 	 * Adds a lot to the quarter.
 	 * @param lot the lot
 	 */
-	public void addLot(Lot lot) {
+	public void addLot(final Lot lot) {
 		if (lot == null)
 			return;
 		
@@ -70,7 +72,7 @@ public class Quarter extends OwnedPlace {
 	 * Removes a lot from the quarter.
 	 * @param lot the lot
 	 */
-	public void removeLot(Lot lot) {
+	public void removeLot(final Lot lot) {
 		lots.remove(lot);
 	}
 }

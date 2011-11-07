@@ -1,5 +1,5 @@
 package net.rageland.ragemod.entity.npc;
 
-public class Trader extends BasicNPC {
+public class Innkeeper extends BasicNPC {
 
 }

@@ -13,15 +13,16 @@ import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.RageZones.Zone;
 import net.rageland.ragemod.data.Lot;
 import net.rageland.ragemod.data.NPCInstance;
+import net.rageland.ragemod.entity.EntityData;
 import net.rageland.ragemod.entity.Owner;
 import net.rageland.ragemod.places.OwnedPlace;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.quest.PlayerQuestData;
 
 // TODO: Should I be storing IDs for towns and such for all player data?  Then I would call the PlayerTowns hash
 //		 every time I need to retrieve the name.
 
-public class PlayerData implements Owner {
+public class PlayerData extends EntityData implements Owner {
 	// ***** DATABASE VALUES *****
 
 	// Basic data

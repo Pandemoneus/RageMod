@@ -12,15 +12,15 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.data.PlayerTown;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.player.PlayerData;
 
 public class TownQueries {
 	
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 	
-	public TownQueries(RageDB rageDB, RageMod plugin)
+	public TownQueries(DatabaseHandler rageDB, RageMod plugin)
 	{
 		this.rageDB = rageDB;
 		this.plugin = plugin;

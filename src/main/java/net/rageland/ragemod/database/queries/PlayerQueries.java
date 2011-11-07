@@ -13,13 +13,13 @@ import org.bukkit.Location;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.data.Permits;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 public class PlayerQueries {
 
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 	
 	private String playerQuery = 
@@ -32,7 +32,7 @@ public class PlayerQueries {
     		"LEFT JOIN PlayerTowns pt ON p.ID_PlayerTown = pt.ID_PlayerTown " +
     		"LEFT JOIN NPCTowns nt ON p.ID_Player = nt.ID_Player_Steward ";
 	
-	public PlayerQueries(RageDB rageDB, RageMod plugin)
+	public PlayerQueries(DatabaseHandler rageDB, RageMod plugin)
 	{
 		this.rageDB = rageDB;
 		this.plugin = plugin;

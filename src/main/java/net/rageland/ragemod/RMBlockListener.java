@@ -6,7 +6,7 @@ import net.rageland.ragemod.data.Lot;
 import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

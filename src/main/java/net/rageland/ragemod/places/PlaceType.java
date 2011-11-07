@@ -5,17 +5,17 @@ import java.util.HashMap;
 public enum PlaceType {
 	CAPITOL("Capitol"),
 	GENERIC("Generic"),
-	INSTANCE("Dungeon"),
+	DUNGEON("Dungeon"),
+	BATTLEFIELD("Battlefield"),
 	LOT("Lot"),
 	QUARTER("Quarter"),
-	SHOP("Shop"),
 	SHRINE("Shrine"),
 	TOWN("Town");
 
-	private String name;
+	private final String name;
 	private static HashMap<String, PlaceType> names = new HashMap<String, PlaceType>();
 
-	private PlaceType(String name) {
+	private PlaceType(final String name) {
 		this.name = name;
 	}
 
@@ -32,7 +32,7 @@ public enum PlaceType {
 	 * @param name the name
 	 * @return the type specified by the name or null if the name does not specify any type
 	 */
-	public PlaceType byName(String name) {
+	public PlaceType byName(final String name) {
 		return names.get(name);
 	}
 

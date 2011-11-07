@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.places.Town;
+import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 import org.bukkit.ChatColor;

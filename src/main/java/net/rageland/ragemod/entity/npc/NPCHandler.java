@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
+import net.rageland.ragemod.Handler;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.data.NPCInstance;
 import net.rageland.ragemod.data.NPCLocation;
@@ -24,7 +25,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.WorldListener;
 import org.martin.bukkit.npclib.BWorld;
 
-public class NPCHandler {
+public class NPCHandler extends Handler {
 	private int taskid;
 	private RageMod plugin;
 	//private NPCSpawner npcSpawner;

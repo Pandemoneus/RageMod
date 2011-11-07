@@ -2,10 +2,11 @@ package net.rageland.ragemod.entity.npc;
 
 import java.util.HashSet;
 
+import net.rageland.ragemod.entity.EntityData;
 import net.rageland.ragemod.entity.Owner;
 import net.rageland.ragemod.places.OwnedPlace;
 
-public class NPCData implements Owner {
+public class NPCData extends EntityData implements Owner {
 	public int id_NPC;
 	public int id_NPCRace;
 	public String name;

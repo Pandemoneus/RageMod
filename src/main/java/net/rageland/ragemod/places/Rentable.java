@@ -15,7 +15,7 @@ public interface Rentable {
 	 * Sets the rent owners have to pay.
 	 * @param rent the rent
 	 */
-	public void setRent(double rent);
+	public void setRent(final double rent);
 	
 	/**
 	 * Returns a HashMap containing the results of rent payments.

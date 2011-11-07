@@ -90,12 +90,12 @@ public class Location2D implements Serializable {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (!(o instanceof Location2D)) {
 			return false;
 		}
 		
-		Location2D loc = (Location2D) o;
+		final Location2D loc = (Location2D) o;
 		
 		return this.world.equals(loc.world) && this.x == loc.x && this.z == loc.z;
 	}

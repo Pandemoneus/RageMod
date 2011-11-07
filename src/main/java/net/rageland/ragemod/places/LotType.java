@@ -7,6 +7,9 @@ public enum LotType {
 	GENERIC("Generic"),
 	WARRENS("Warrens"),
 	MARKET("Market"),
+	INN("Inn"),
+	SMITHY("Smithy"),
+	NPC_HOUSING("House"),
 	COAL("Coal"),
 	IRON("Iron"),
 	GOLD("Gold"),
@@ -15,7 +18,7 @@ public enum LotType {
 	private final String name;
 	private final static Map<String, LotType> names = new HashMap<String, LotType>();
 	
-	private LotType(String name) {
+	private LotType(final String name) {
 		this.name = name;
 	}
 	
@@ -24,7 +27,7 @@ public enum LotType {
 	}
 	
 	
-	public static LotType byCategoryName(String categoryName) {
+	public static LotType byCategoryName(final String categoryName) {
 		return names.get(categoryName);
 	}
 	

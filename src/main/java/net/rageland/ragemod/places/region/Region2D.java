@@ -6,11 +6,11 @@ import org.bukkit.World;
 
 public class Region2D extends Region3D {
 
-	public Region2D(Location startLoc, Location endLoc) {
+	public Region2D(final Location startLoc, final Location endLoc) {
 		super(startLoc, endLoc);
 	}
 	
-	public Region2D(World world, int x1, int z1, int x2, int z2) {
+	public Region2D(final World world, final int x1, final int z1, final int x2, final int z2) {
 		super(world, x1, 0, z1, x2, 0, z2);
 	}
 	
@@ -20,7 +20,7 @@ public class Region2D extends Region3D {
 	 * @param area the area to check
 	 * @return true if the area is within this area, otherwise false
 	 */
-	public boolean isAreaWithinArea(Region2D area) {
+	public boolean isAreaWithinArea(final Region2D area) {
 		return isAreaWithinArea(new Region3D(lowPoint, highPoint));
 	}
 	

@@ -11,7 +11,7 @@ import org.bukkit.World;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.data.Lot;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.region.Region2D;
 
@@ -23,10 +23,10 @@ import net.rageland.ragemod.places.region.Region2D;
  */
 public class LotQueries {
 
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 
-	public LotQueries(RageDB rageDB, RageMod plugin) {
+	public LotQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 	}

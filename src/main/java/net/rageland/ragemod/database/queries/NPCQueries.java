@@ -18,7 +18,7 @@ import net.rageland.ragemod.data.NPCLocationPool;
 import net.rageland.ragemod.data.NPCPool;
 import net.rageland.ragemod.data.NPCPhrase;
 import net.rageland.ragemod.data.NPCTown;
-import net.rageland.ragemod.database.RageDB;
+import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.npc.NPCData;
 import net.rageland.ragemod.entity.npc.SpeechData;
 import net.rageland.ragemod.entity.player.PlayerData;
@@ -26,11 +26,11 @@ import net.rageland.ragemod.text.Language;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 public class NPCQueries {
-	private RageDB rageDB;
+	private DatabaseHandler rageDB;
 	private RageMod plugin;
 	private Random random;
 
-	public NPCQueries(RageDB rageDB, RageMod plugin) {
+	public NPCQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 		this.random = new Random();
