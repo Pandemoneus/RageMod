@@ -20,7 +20,7 @@ public abstract class BasicPlace implements Place, Title {
 	@SuppressWarnings("unused")
 	// Place info
 	private RageMod plugin;
-	private PlaceType type = PlaceType.GENERIC;
+	private PlaceType type;
 	private Region3D boundaries;
 	private String name;
 	// TODO: Config based standard title color

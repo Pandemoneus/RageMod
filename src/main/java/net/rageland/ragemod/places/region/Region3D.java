@@ -5,15 +5,14 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 
 /**
  * @author Pandemoneus - https://github.com/Pandemoneus
  */
 public class Region3D {
-	protected final World world;
-	protected final Location lowPoint;
-	protected final Location highPoint;
+	protected final String world;
+	protected final Location3D lowPoint;
+	protected final Location3D highPoint;
 
 	/**
 	 * Constructs a new cuboid.
@@ -23,35 +22,29 @@ public class Region3D {
 	 * @param startLoc the first point
 	 * @param endLoc the second point
 	 */
-	public Region3D(final Location startLoc, final Location endLoc) {
-		this(startLoc.getWorld(), startLoc.getBlockX(), startLoc.getBlockY(), startLoc.getBlockZ(), endLoc.getBlockX(), endLoc.getBlockY(), endLoc.getBlockZ());
-
-		if (!(startLoc.getWorld().equals(endLoc.getWorld()))) {
-			System.out.println("Can't use two different worlds for Region3D!");
-			System.out.println("Using the world of the first location instead.");
-		}
+	public Region3D(final Location3D startLoc, final Location3D endLoc) {
+		this(startLoc.getWorld(), startLoc.getBlockX(), startLoc.getBlockY(), startLoc.getBlockZ(), endLoc.getWorld(), endLoc.getBlockX(), endLoc.getBlockY(), endLoc.getBlockZ());
 	}
 	
 	/**
 	 * Constructs a new cuboid with the given coordinates.
 	 * 
-	 * @param world the world
+	 * @param world1 the first world
 	 * @param x1 the first x coordinate
 	 * @param y1 the first y coordinate
 	 * @param z1 the first z coordinate
+	 * @param world2 the second world
 	 * @param x2 the second x coordinate
 	 * @param y2 the second y coordinate
 	 * @param z2 the second z coordinate
 	 */
-	public Region3D(final World world, final int x1, final int y1, final int z1, final int x2, final int y2, final int z2) {
-		World tmpWorld = world;
-		
-		if (tmpWorld == null) {
-			System.out.println("Passed world is null! Using default world instead.");
-			tmpWorld = Bukkit.getWorlds().get(0);
+	public Region3D(final String world1, final int x1, final int y1, final int z1, final String world2, final int x2, final int y2, final int z2) {
+		if (!(world1.equals(world2))) {
+			System.out.println("Can't use two different worlds for Region3D!");
+			System.out.println("Using the world of the first location instead.");
 		}
 		
-		this.world = tmpWorld;
+		this.world = world1;
 		
 		final int lowX = Math.min(x1, x2);
 		final int lowY = Math.min(y1, y2);
@@ -61,8 +54,8 @@ public class Region3D {
 		final int highY = Math.max(y1, y2);
 		final int highZ = Math.max(z1, z2);
 
-		lowPoint = new Location(this.world, lowX, lowY, lowZ);
-		highPoint = new Location(this.world, highX, highY, highZ);
+		lowPoint = new Location3D(this.world, lowX, lowY, lowZ);
+		highPoint = new Location3D(this.world, highX, highY, highZ);
 	}
 
 	/**
@@ -81,7 +74,7 @@ public class Region3D {
 	 * @param loc the location to check
 	 * @return true if the location is within this cuboid, otherwise false
 	 */
-	public boolean containsLoc(final Location loc) {
+	public boolean containsLoc(final Location3D loc) {
 		if (loc == null || !loc.getWorld().equals(highPoint.getWorld())) {
 			return false;
 		}
@@ -99,8 +92,8 @@ public class Region3D {
 	 * 
 	 * @return the center of the cuboid
 	 */
-	public Location getCenter() {
-		return new Location(world, lowPoint.getBlockX() + getXSize() / 2, lowPoint.getBlockY() + getYSize() / 2, lowPoint.getBlockZ() + getZSize() / 2);
+	public Location3D getCenter() {
+		return new Location3D(world, lowPoint.getBlockX() + getXSize() / 2, lowPoint.getBlockY() + getYSize() / 2, lowPoint.getBlockZ() + getZSize() / 2);
 	}
 
 	/**
@@ -127,17 +120,17 @@ public class Region3D {
 	 * @return a random location within the cuboid
 	 */
 	public Location getRandomLocation() {
-		final World world = getWorld();
+		final String world = getWorld();
 		final Random randomGenerator = new Random();
 
-		Location result = new Location(world, highPoint.getBlockX(), highPoint.getBlockY(), highPoint.getZ());
+		Location result = new Location(Bukkit.getWorld(world), highPoint.getBlockX(), highPoint.getBlockY(), highPoint.getBlockZ());
 		
 		if (getSize() > 1) {
 			final double randomX = lowPoint.getBlockX() + randomGenerator.nextInt(getXSize());
 			final double randomY = lowPoint.getBlockY() + randomGenerator.nextInt(getYSize());
 			final double randomZ = lowPoint.getBlockZ() + randomGenerator.nextInt(getZSize());
 			
-			result = new Location(world, randomX, randomY, randomZ);
+			result = new Location(Bukkit.getWorld(world), randomX, randomY, randomZ);
 		}
 		
 		return result;
@@ -197,7 +190,7 @@ public class Region3D {
 	 * 
 	 * @return the higher location of this cuboid
 	 */
-	public Location getHighLoc() {
+	public Location3D getHighLoc() {
 		return highPoint;
 	}
 
@@ -206,7 +199,7 @@ public class Region3D {
 	 * 
 	 * @return the lower location of this cuboid
 	 */
-	public Location getLowLoc() {
+	public Location3D getLowLoc() {
 		return lowPoint;
 	}
 
@@ -215,7 +208,7 @@ public class Region3D {
 	 * 
 	 * @return the world this cuboid is in
 	 */
-	public World getWorld() {
+	public String getWorld() {
 		return world;
 	}
 	
@@ -233,6 +226,6 @@ public class Region3D {
 	 * @return a raw representation of this cuboid
 	 */
 	public String toRaw() {
-		return new StringBuilder(getWorld().getName()).append(",").append(lowPoint.getBlockX()).append(",").append(lowPoint.getBlockY()).append(",").append(lowPoint.getBlockZ()).append(",").append(highPoint.getBlockX()).append(",").append(highPoint.getBlockY()).append(",").append(highPoint.getBlockZ()).toString();
+		return new StringBuilder(getWorld()).append(",").append(lowPoint.getBlockX()).append(",").append(lowPoint.getBlockY()).append(",").append(lowPoint.getBlockZ()).append(",").append(highPoint.getBlockX()).append(",").append(highPoint.getBlockY()).append(",").append(highPoint.getBlockZ()).toString();
 	}
 }
