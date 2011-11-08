@@ -3,6 +3,7 @@ package net.rageland.ragemod.data;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.RageZones.Quadrant;
 import net.rageland.ragemod.RageZones.Zone;
+import net.rageland.ragemod.entity.npc.NPCInstance;
 
 import org.bukkit.Location;
 import org.bukkit.World;

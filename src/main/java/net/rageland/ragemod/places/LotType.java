@@ -10,6 +10,8 @@ public enum LotType {
 	INN("Inn"),
 	SMITHY("Smithy"),
 	NPC_HOUSING("House"),
+	HOSPITAL("Hostpital"),
+	SANCTUM("Sanctum"),
 	COAL("Coal"),
 	IRON("Iron"),
 	GOLD("Gold"),

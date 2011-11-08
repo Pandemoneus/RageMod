@@ -1,7 +1,6 @@
 package net.rageland.ragemod.entity.npc;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCInstance;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.quest.QuestOld;
 

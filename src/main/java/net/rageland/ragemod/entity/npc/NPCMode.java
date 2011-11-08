@@ -6,5 +6,6 @@ public enum NPCMode {
 	TRADE,
 	PATROL,
 	GREET,
-	ATTACK;
+	ATTACK,
+	MOVE;
 }

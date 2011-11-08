@@ -7,13 +7,13 @@ public enum PvPStatus {
 	FREE_FOR_ALL("Free for all"),
 	NATION("Nation only");
 	
-	private final String statusMessage;
+	private final String status;
 	
-	private PvPStatus(final String statusMessage) {
-		this.statusMessage = statusMessage;
+	private PvPStatus(final String status) {
+		this.status = status;
 	}
 	
-	public String getStatusMessage() {
-		return statusMessage;
+	public String getStatus() {
+		return status;
 	}
 }

@@ -34,6 +34,13 @@ public abstract class BasicPlace implements Place, Title {
 	private String entryMessage = "";
 	private String exitMessage = "";
 	
+	/**
+	 * Constructs a basic place.
+	 * @param plugin the plugin
+	 * @param type the place type
+	 * @param boundaries the boundaries
+	 * @param name the name
+	 */
 	protected BasicPlace(final RageMod plugin, final PlaceType type, final Region3D boundaries, final String name) {
 		this.plugin = plugin;
 		this.type = type;

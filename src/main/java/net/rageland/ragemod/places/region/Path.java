@@ -105,13 +105,23 @@ public class Path {
 	}
 	
 	/**
-	 * Returns the next WayPoint at the index.
+	 * Returns the next WayPoint from the index.
 	 * Returns null when the end of the path is reached.
 	 * @param index the index
-	 * @return the next WayPoint at the index
+	 * @return the next WayPoint from the index
 	 */
 	public WayPoint getNext(final int index) {
 		return get(index + 1);
+	}
+	
+	/**
+	 * Returns the previous WayPoint from the index.
+	 * Returns null when the start of the path is reached.
+	 * @param index the index
+	 * @return the previous WayPoint from the index
+	 */
+	public WayPoint getPrevious(final int index) {
+		return get(index - 1);
 	}
 	
 	/**

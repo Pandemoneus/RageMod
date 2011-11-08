@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.RageZones;
+import net.rageland.ragemod.entity.npc.NPCInstance;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 

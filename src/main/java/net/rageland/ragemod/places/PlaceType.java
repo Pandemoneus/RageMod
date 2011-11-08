@@ -6,7 +6,7 @@ public enum PlaceType {
 	CAPITOL("Capitol"),
 	GENERIC("Generic"),
 	DUNGEON("Dungeon"),
-	BATTLEFIELD("Battlefield"),
+	BATTLEGROUND("Battleground"),
 	LOT("Lot"),
 	QUARTER("Quarter"),
 	SHRINE("Shrine"),

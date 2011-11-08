@@ -9,10 +9,10 @@ import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCInstance;
 import net.rageland.ragemod.data.NPCLocation;
-import net.rageland.ragemod.data.NPCInstance.NPCType;
 import net.rageland.ragemod.entity.npc.NPCData;
+import net.rageland.ragemod.entity.npc.NPCInstance;
+import net.rageland.ragemod.entity.npc.NPCInstance.NPCType;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.owned.Town;
 

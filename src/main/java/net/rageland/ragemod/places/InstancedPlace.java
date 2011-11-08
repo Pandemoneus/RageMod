@@ -18,6 +18,11 @@ public abstract class InstancedPlace extends BasicPlace {
 	private Region3D exit;
 	private HashMap<Integer, Region3D> spawns = new HashMap<Integer, Region3D>();
 	
+	private InstanceStatus status;
+	
+	private String closedMessage;
+	private String inProgressMessage;
+	
 	/**
 	 * Constructs a new instanced place with no entrance, exit or spawn regions.
 	 * @param plugin the plugin
@@ -73,6 +78,28 @@ public abstract class InstancedPlace extends BasicPlace {
 	}
 	
 	/**
+	 * Sets the message that is displayed when the instance is closed.
+	 * @param message the message
+	 */
+	protected void setClosedMessage(final String message) {
+		if (message == null)
+			return;
+		
+		closedMessage = message;
+	}
+	
+	/**
+	 * Sets the message that is displayed when the instance is in progress.
+	 * @param message the message
+	 */
+	protected void setInProgressMessage(final String message) {
+		if (message == null)
+			return;
+		
+		inProgressMessage = message;
+	}
+	
+	/**
 	 * Adds a region that players can spawn in when teleported into the instance.
 	 * @param id your id
 	 * @param spawn the region
@@ -120,7 +147,17 @@ public abstract class InstancedPlace extends BasicPlace {
 			return;
 		}
 		
-		// TODO: Check whether players can teleport
+		switch (status) {
+		case CLOSED:
+			player.sendMessage(COLOR_ERROR_MESSAGE + closedMessage);
+			return;
+		case IN_PROGRESS:
+			player.sendMessage(COLOR_ERROR_MESSAGE + inProgressMessage);
+			return;
+		default:
+			break;
+		}
+		
 		player.teleport(spawns.get(id).getRandomLocationForPlayers());
 	}
 }

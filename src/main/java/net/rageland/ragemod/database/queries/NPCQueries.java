@@ -11,8 +11,6 @@ import java.util.Random;
 
 import org.bukkit.Location;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCInstance;
-import net.rageland.ragemod.data.NPCInstance.NPCType;
 import net.rageland.ragemod.data.NPCLocation;
 import net.rageland.ragemod.data.NPCLocationPool;
 import net.rageland.ragemod.data.NPCPool;
@@ -20,7 +18,9 @@ import net.rageland.ragemod.data.NPCPhrase;
 import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.npc.NPCData;
+import net.rageland.ragemod.entity.npc.NPCInstance;
 import net.rageland.ragemod.entity.npc.SpeechData;
+import net.rageland.ragemod.entity.npc.NPCInstance.NPCType;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.text.Language;
 import net.rageland.ragemod.utilities.GeneralUtilities;

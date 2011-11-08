@@ -1,4 +1,4 @@
-package net.rageland.ragemod.data;
+package net.rageland.ragemod.entity.npc;
 
 import java.sql.Timestamp;
 import org.bukkit.ChatColor;
@@ -8,9 +8,7 @@ import org.martin.bukkit.npclib.BServer;
 import org.martin.bukkit.npclib.BWorld;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.npc.NPC;
-import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.npc.SpeechNPC;
+import net.rageland.ragemod.data.NPCLocation;
 //import net.rageland.ragemod.npcentities.QuestNPC;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
