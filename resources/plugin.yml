@@ -2,6 +2,7 @@ name: RageMod
 main: net.rageland.ragemod.RageMod
 version: 0.1
 depend: [Vault]
+softdepend: [Heroes, Spout]
 commands:
   lot:
     description: N/A
