@@ -8,7 +8,8 @@ public enum NPCType {
 	SHOPKEEPER("Shopkeeper"),
 	BLACKSMITH("Blacksmith"),
 	QUESTER("Questgiver"),
-	INNKEEPER("Innkeeper");
+	INNKEEPER("Innkeeper"),
+	GUARD("Guard");
 	
 	private final String name;
 	private static final HashMap<String, NPCType> names = new HashMap<String, NPCType>();

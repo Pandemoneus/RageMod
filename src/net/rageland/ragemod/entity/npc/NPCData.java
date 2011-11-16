@@ -1,9 +1,9 @@
 package net.rageland.ragemod.entity.npc;
 
 import java.util.HashMap;
+
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.HumanEntity;
-import org.getspout.spoutapi.SpoutManager;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.OwnerData;
 import net.rageland.ragemod.entity.npc.race.Race;
@@ -31,25 +31,30 @@ public class NPCData extends OwnerData {
 	 * @param skinPath the path to the skin of the NPC
 	 * @param current the current location of the NPC
 	 * @param spawn the spawn location of the NPC
+	 * @param spawnOnLoad determines whether the NPC is spawned when the plugin gets loaded
 	 * @param speechDataIdentifier the identifier used to get SpeechData for the NPC
+	 * @param nameColor the color the NPC's name should appear in
 	 */
-	public NPCData(final RageMod plugin, final int entityId, final String name, final Race race, final String skinPath, final Location3D current, final Location3D spawn, final String speechDataIdentifier) {
-		super(plugin, entityId, name, race, current, spawn);
-		setSkin(skinPath);
+	public NPCData(final RageMod plugin, final int entityId, final String name, final Race race, final String skinPath, final Location3D current, final Location3D spawn, final boolean spawnOnLoad, final String speechDataIdentifier, final ChatColor nameColor) {
+		super(plugin, entityId, name, race, current, spawn, spawnOnLoad);
+
 		this.speechDataIdentifier = speechDataIdentifier;
+		
+		if(spawnOnLoad) {
+			new BasicNPC(plugin, this, nameColor, NPCType.BASIC, getSpeech()).spawn();
+			((BasicNPC) associatedEntity).setSkin(skinPath);
+		}
 	}
 	
-	/**
-	 * Sets the skin of a NPC.
-	 * @param path the path to the skin
-	 */
-	public void setSkin(final String path) {
+	public String getSkinPath() {
+		return skinPath;
+	}
+	
+	public void setSkinPath(final String path) {
 		if (path == null)
 			return;
 		
 		skinPath = path;
-		//TODO: Check whether Spout is really activated to prevent NPE
-		SpoutManager.getAppearanceManager().setGlobalSkin((HumanEntity) associatedEntity, skinPath);
 	}
 	
 	/**

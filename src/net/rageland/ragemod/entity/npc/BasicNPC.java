@@ -6,7 +6,9 @@ import net.rageland.ragemod.entity.EntityHandler;
 import net.rageland.ragemod.text.Title;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.getspout.spoutapi.SpoutManager;
 import org.martin.bukkit.npclib.BServer;
 import org.martin.bukkit.npclib.BWorld;
 import org.martin.bukkit.npclib.NPCEntity;
@@ -21,31 +23,15 @@ public class BasicNPC extends NPCEntity implements NPC, Title {
 	
 	private boolean spawned = false;
 	
-	protected BasicNPC(final RageMod plugin, final NPCData data, final ChatColor nameColor, final NPCType type, final NPCSpeechData speech) {
+	public BasicNPC(final RageMod plugin, final NPCData data, final ChatColor nameColor, final NPCType type, final NPCSpeechData speech) {
 		super(BServer.getInstance(plugin).getMCServer(), new BWorld(data.getLocation().getWorld()).getMCWorld(), nameColor + data.getName(), new ItemInWorldManager(new BWorld(data.getLocation().getWorld()).getWorldServer()));
 		
 		this.plugin = plugin;
 		this.data = data;
 		this.data.associatedEntity = this;
-		this.nameColor = nameColor;
+		this.nameColor = nameColor == null ? ChatColor.WHITE : nameColor;
 		this.type = type;
 		this.speech = speech;
-	}
-	
-	/**
-	 * Constructs a BasicNPC from NPCData.
-	 * Note that there is no other way to construct a BasicNPC.
-	 * @param data the data
-	 * @param nameColor the color in which the npc's name should appear
-	 * @return a new BasicNPC
-	 */
-	public static BasicNPC fromNPCData(final NPCData data, final ChatColor nameColor) {
-		if (data == null)
-			return null;
-		
-		final ChatColor tmp = nameColor == null ? ChatColor.WHITE : nameColor;
-		
-		return new BasicNPC(data.plugin, data, tmp, NPCType.BASIC, data.getSpeech());
 	}
 
 	/**
@@ -64,6 +50,19 @@ public class BasicNPC extends NPCEntity implements NPC, Title {
 	public void leftClickAction(final Player player) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/**
+	 * Sets the skin of a NPC.
+	 * @param path the path to the skin
+	 */
+	public void setSkin(final String path) {
+		if (path == null)
+			return;
+		
+		data.setSkinPath(path);
+		//TODO: Check whether Spout is really activated to prevent NPE
+		SpoutManager.getAppearanceManager().setGlobalSkin((HumanEntity) this, data.getSkinPath());
 	}
 	
 	public boolean isSpawned() {
@@ -106,7 +105,7 @@ public class BasicNPC extends NPCEntity implements NPC, Title {
 		nameColor = color;
 		
 		if (spawned)
-			NPCHandler.getInstance().manager.rename(Integer.toString(data.entityId), nameColor + data.getName());
+			EntityHandler.getInstance().manager.rename(Integer.toString(data.entityId), nameColor + data.getName());
 	}
 	
 	/**

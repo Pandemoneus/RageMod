@@ -3,10 +3,10 @@ package net.rageland.ragemod.entity.player;
 import java.util.Date;
 import java.util.HashMap;
 
-import net.rageland.ragemod.Handler;
+import net.rageland.ragemod.ModuleHandler;
 import net.rageland.ragemod.RageMod;
 
-public class PlayerHandler extends Handler {
+public class PlayerHandler extends ModuleHandler {
 
 	private HashMap<String, PlayerData> players;
 	private RageMod plugin;

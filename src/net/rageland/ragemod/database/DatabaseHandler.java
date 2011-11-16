@@ -8,7 +8,7 @@ package net.rageland.ragemod.database;
 
 import java.sql.*;
 
-import net.rageland.ragemod.Handler;
+import net.rageland.ragemod.ModuleHandler;
 import net.rageland.ragemod.RageConfig;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.database.queries.FactionQueries;
@@ -19,7 +19,7 @@ import net.rageland.ragemod.database.queries.PlayerQueries;
 import net.rageland.ragemod.database.queries.TaskQueries;
 import net.rageland.ragemod.database.queries.TownQueries;
 
-public class DatabaseHandler extends Handler {
+public class DatabaseHandler extends ModuleHandler {
 
 	private JDCConnectionDriver connectionDriver;
 	protected String url;

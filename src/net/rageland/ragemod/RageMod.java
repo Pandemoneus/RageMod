@@ -8,7 +8,6 @@ import net.rageland.ragemod.command.CommandHandler;
 import net.rageland.ragemod.data.Tasks;
 import net.rageland.ragemod.data.Towns;
 import net.rageland.ragemod.database.DatabaseHandler;
-import net.rageland.ragemod.entity.npc.NPCHandler;
 import net.rageland.ragemod.entity.player.PlayerHandler;
 import net.rageland.ragemod.factions.Faction;
 import net.rageland.ragemod.quest.QuestManager;
@@ -44,7 +43,7 @@ public class RageMod extends JavaPlugin {
 	// Plugin info
 	public String name;
 	public String version;
-	public static Log logger;
+	public Log logger;
 
 	// Global data
 	public PlayerHandler players;
@@ -58,7 +57,6 @@ public class RageMod extends JavaPlugin {
 	public DatabaseHandler database;
 	public RageZones zones;
 	public Message message;
-	public NPCHandler npcManager;
 	public QuestManager questManager;
 
 	// Permission and economy support
@@ -169,7 +167,6 @@ public class RageMod extends JavaPlugin {
 		languages = new Languages(this);
 
 		zones = new RageZones(this, config);
-		npcManager = new NPCHandler(this);
 		questManager = new QuestManager();
 		message = new Message(this);
 	}

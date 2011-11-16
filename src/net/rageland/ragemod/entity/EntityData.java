@@ -26,16 +26,19 @@ public abstract class EntityData {
 	private Location3D currentLocation;
 	private Location3D spawnLocation;
 	
+	public boolean spawnOnLoad;
+	
 	// Non-persistant
 	public Entity associatedEntity;
 	
-	protected EntityData(final RageMod plugin, final int entityId, final String name, final Race race, final Location3D current, final Location3D spawn) {
+	protected EntityData(final RageMod plugin, final int entityId, final String name, final Race race, final Location3D current, final Location3D spawn, final boolean spawnOnLoad) {
 		this.plugin = plugin;
 		this.entityId = entityId;
 		setName(name);
 		setRace(race);
 		spawnLocation = spawn == null ? new Location3D(Bukkit.getWorlds().get(0).getSpawnLocation()) : spawn;
 		currentLocation = current == null ? spawnLocation : current;
+		this.spawnOnLoad = spawnOnLoad;
 	}
 	
 	/**
@@ -108,5 +111,12 @@ public abstract class EntityData {
     @Override
     public int hashCode() {
     	return new HashCodeBuilder(59, 43).append(entityId).append(name).append(race).append(faction).toHashCode();
+    }
+    
+    public org.bukkit.entity.Entity spawnEntity() {
+    	if (associatedEntity == null)
+    		return null;
+    	
+    	return associatedEntity.spawn();
     }
 }

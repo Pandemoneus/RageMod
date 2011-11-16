@@ -1,7 +1,7 @@
 package net.rageland.ragemod.places;
 
-import net.rageland.ragemod.Handler;
+import net.rageland.ragemod.ModuleHandler;
 
-public class PlaceHandler extends Handler {
+public class PlaceHandler extends ModuleHandler {
 
 }

@@ -1,5 +1,5 @@
 package net.rageland.ragemod;
 
-public abstract class Handler {
-	public final RageMod plugin = RageMod.getInstance();
+public interface Handler {
+	public boolean loadData();
 }

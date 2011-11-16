@@ -3,9 +3,7 @@ package net.rageland.ragemod.entity.npc;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.utilities.GeneralUtilities;
 
 public class NPCSpeechData {
 	private static HashMap<String, NPCSpeechData> allData;
@@ -61,9 +59,10 @@ public class NPCSpeechData {
 	// Gets the message for a followup encounter
 	public String getFollowupGreeting(PlayerData playerData) {
 		// Convert the -10 to 10 affinity float value to the -2 to 2 affinity integer code
-		int affinityCode = GeneralUtilities.getAffinityCode(playerData.getAffinity(npcData.id_NPC));
+		//int affinityCode = GeneralUtilities.getAffinityCode(playerData.getAffinity(npcData.id_NPC));
 
-		return followups.get(affinityCode).getMessage(playerData);
+		//return followups.get(affinityCode).getMessage(playerData);
+		return "";
 	}
 
 	// Processes the language for a phrase

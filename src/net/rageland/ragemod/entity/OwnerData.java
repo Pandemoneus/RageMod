@@ -11,8 +11,8 @@ public abstract class OwnerData extends EntityData implements Owner {
 
 	private final HashSet<OwnedPlace> ownedPlaces = new HashSet<OwnedPlace>();
 	
-	protected OwnerData(RageMod plugin, int entityId, String name, Race race, Location3D current, Location3D spawn) {
-		super(plugin, entityId, name, race, current, spawn);
+	protected OwnerData(final RageMod plugin, final int entityId, final String name, final Race race, final Location3D current, final Location3D spawn, final boolean spawnOnLoad) {
+		super(plugin, entityId, name, race, current, spawn, spawnOnLoad);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public abstract class OwnerData extends EntityData implements Owner {
 	}
 
 	@Override
-	public void addPlace(OwnedPlace place) {
+	public void addPlace(final OwnedPlace place) {
 		if (place == null)
 			return;
 		
@@ -29,7 +29,7 @@ public abstract class OwnerData extends EntityData implements Owner {
 	}
 
 	@Override
-	public void removePlace(OwnedPlace place) {
+	public void removePlace(final OwnedPlace place) {
 		if (place == null)
 			return;
 		

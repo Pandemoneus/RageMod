@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import net.rageland.ragemod.Handler;
+import net.rageland.ragemod.ModuleHandler;
 import net.rageland.ragemod.RageMod;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandHandler extends Handler {
+public class CommandHandler extends ModuleHandler {
 
     protected LinkedHashMap<String, Command> commands;
     protected HashMap<String, Command> identifiers;

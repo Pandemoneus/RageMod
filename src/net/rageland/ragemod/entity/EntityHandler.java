@@ -2,20 +2,48 @@ package net.rageland.ragemod.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.rageland.ragemod.Handler;
-import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.npc.NPCHandler;
 
-public class EntityHandler extends Handler {
-	private static final HashMap<Integer, EntityData> entities = new HashMap<Integer, EntityData>();
-	private static final ArrayList<Integer> spawnedEntities = new ArrayList<Integer>();
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Entity;
+import org.martin.bukkit.npclib.NPCManager;
+import org.yaml.snakeyaml.error.YAMLException;
+
+import net.rageland.ragemod.Configuration;
+import net.rageland.ragemod.Handler;
+import net.rageland.ragemod.ModuleHandler;
+import net.rageland.ragemod.RageMod;
+import net.rageland.ragemod.entity.npc.NPCData;
+
+public final class EntityHandler implements Handler {
+	private final HashMap<Integer, EntityData> entities = new HashMap<Integer, EntityData>();
+	private final ArrayList<Integer> spawnedEntities = new ArrayList<Integer>();
+	private final Configuration config;
 	private static EntityHandler instance;
 	
+	private static final String CONFIG_NAME = "Entities.yml";
+	
+	public final NPCManager manager;
+	
+	private EntityHandler() {
+		final ModuleHandler mh = ModuleHandler.getInstance();
+		final RageMod rm = mh.plugin;
+		
+		mh.addHandler(this);
+		manager = new NPCManager(rm);
+		
+		config = new Configuration(rm, CONFIG_NAME);
+		addDefaults();
+	}
+	
+	private void addDefaults() {
+				
+	}
+
 	/**
 	 * Gets an id that can be used for new entities.
 	 * @return a free id
 	 */
-	public static int getNextFreeId() {
+	public int getNextFreeId() {
 		int i = 0;
 		
 		while(entities.containsKey(i))
@@ -63,11 +91,11 @@ public class EntityHandler extends Handler {
 		org.bukkit.entity.Entity ent = null;
 		
 		if (data instanceof NPCData) {
-			ent = NPCHandler.getInstance().spawn((NPCData) data);
-			
-			if (ent != null)
-				spawnedEntities.add(id);
+			ent = (Entity) manager.spawnNPC(data.getName(), data.getLocation().toLocation(), Integer.toString(data.entityId));
 		}
+		
+		if (ent != null)
+			spawnedEntities.add(id);
 		
 		return ent;
 	}
@@ -82,11 +110,31 @@ public class EntityHandler extends Handler {
 		final EntityData data = entities.get(id);
 
 		if (data instanceof NPCData) {
-			NPCHandler.getInstance().despawn((NPCData) data);
+			manager.despawnById(Integer.toString(data.entityId));
 			spawnedEntities.remove(id);
 			result = true;
 		}
 		
 		return result;
+	}
+
+	@Override
+	public boolean loadData() {
+		final YamlConfiguration c = config.config;
+		
+		try {
+			for (final Object o : c.getList(c.getName())) {
+				if (o instanceof String) {
+					final String s = (String) o;
+					if (c.isConfigurationSection(s))
+						;
+				}
+			}
+		} catch (YAMLException yaml) {
+			final RageMod plugin = config.plugin;
+			plugin.logger.severe("Failed loading the configuration for " + config.file);
+			plugin.logger.severe(yaml.getMessage());
+			return false;
+		}
 	}
 }
