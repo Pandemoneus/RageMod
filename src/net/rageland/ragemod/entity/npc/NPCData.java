@@ -1,19 +1,19 @@
 package net.rageland.ragemod.entity.npc;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
-import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.OwnerData;
-import net.rageland.ragemod.entity.npc.race.Race;
-import net.rageland.ragemod.places.region.Location3D;
+import org.bukkit.configuration.ConfigurationSection;
+import net.rageland.ragemod.entity.Race;
+import net.rageland.ragemod.entity.SharedData;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
-public class NPCData extends OwnerData {
+public class NPCData extends SharedData {
 	// Persistant
-	public boolean isMale = true;
-	private String skinPath = "";
+	public final int uid;
+	
 	private final HashMap<String, Float> affinities = new HashMap<String, Float>();
 	private String speechDataIdentifier;
 	
@@ -21,40 +21,10 @@ public class NPCData extends OwnerData {
 	public static final float MIN_AFFINITY = -10.0F;
 	public static final float MAX_AFFINITY = 10.0F;
 	
-	/**
-	 * Constructs new NPCData.
-	 * This should be done from a configuration file or a database.
-	 * @param plugin the plugin
-	 * @param entityId the entity id
-	 * @param name the name of the NPC
-	 * @param race the race of the NPC
-	 * @param skinPath the path to the skin of the NPC
-	 * @param current the current location of the NPC
-	 * @param spawn the spawn location of the NPC
-	 * @param spawnOnLoad determines whether the NPC is spawned when the plugin gets loaded
-	 * @param speechDataIdentifier the identifier used to get SpeechData for the NPC
-	 * @param nameColor the color the NPC's name should appear in
-	 */
-	public NPCData(final RageMod plugin, final int entityId, final String name, final Race race, final String skinPath, final Location3D current, final Location3D spawn, final boolean spawnOnLoad, final String speechDataIdentifier, final ChatColor nameColor) {
-		super(plugin, entityId, name, race, current, spawn, spawnOnLoad);
-
-		this.speechDataIdentifier = speechDataIdentifier;
-		
-		if(spawnOnLoad) {
-			new BasicNPC(plugin, this, nameColor, NPCType.BASIC, getSpeech()).spawn();
-			((BasicNPC) associatedEntity).setSkin(skinPath);
-		}
-	}
-	
-	public String getSkinPath() {
-		return skinPath;
-	}
-	
-	public void setSkinPath(final String path) {
-		if (path == null)
-			return;
-		
-		skinPath = path;
+	public NPCData(final String name, final int uid, final Race race, final String speechDataIdentifier) {
+		super(name, race);
+		this.uid = uid;
+		this.speechDataIdentifier = speechDataIdentifier == null ? "" : speechDataIdentifier;
 	}
 	
 	/**
@@ -72,5 +42,26 @@ public class NPCData extends OwnerData {
 	
 	public NPCSpeechData getSpeech() {
 		return NPCSpeechData.fromIdentifier(speechDataIdentifier);
+	}
+	
+    public static NPCData getDataFromConfigurationSection(final ConfigurationSection section) {
+    	if (section == null)
+    		return null;
+    	
+    	final String name = section.getString("name");
+    	final Race race = Race.fromName(section.getString("race"));
+    	final String speechDataIdentifier = section.getString("speech");
+    	
+    	return new NPCData(name, Integer.parseInt(section.getName()), race, speechDataIdentifier);
+    }
+
+	public Map<String, Object> save() {
+		final LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+		
+		map.put("name", getName());
+		map.put("race", getRace().getName());
+		map.put("speech", speechDataIdentifier);
+		
+		return map;
 	}
 }

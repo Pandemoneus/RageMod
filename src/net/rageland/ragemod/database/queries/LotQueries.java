@@ -10,7 +10,6 @@ import java.util.HashMap;
 import org.bukkit.World;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.Lot;
 import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.region.Region2D;
@@ -23,7 +22,7 @@ import net.rageland.ragemod.places.region.Region2D;
  */
 public class LotQueries {
 
-	private DatabaseHandler rageDB;
+	/*private DatabaseHandler rageDB;
 	private RageMod plugin;
 
 	public LotQueries(DatabaseHandler rageDB, RageMod plugin) {
@@ -33,7 +32,7 @@ public class LotQueries {
 
 	/**
 	 * Make a separate query to get all lots owned by the player
-	 */
+	 *
 	public ArrayList<Lot> getLots(int id_Player) {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
@@ -214,6 +213,6 @@ public class LotQueries {
 			rageDB.close(rs, preparedStatement, conn);
 		}
 
-	}
+	}*/
 
 }

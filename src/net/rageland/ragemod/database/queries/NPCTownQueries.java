@@ -11,7 +11,6 @@ import java.util.HashMap;
 import org.bukkit.entity.Player;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.database.DatabaseHandler;
 
 public class NPCTownQueries {
@@ -23,7 +22,7 @@ public class NPCTownQueries {
 		this.plugin = plugin;
 	}
 
-	// Creates a new NPC town
+	/*// Creates a new NPC town
 	public int create(Player player, String name, int x1, int z1, int x2, int z2, int level, int id_Race) {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
@@ -182,5 +181,5 @@ public class NPCTownQueries {
 			rageDB.close(rs, preparedStatement, conn);
 		}
 
-	}
+	}*/
 }

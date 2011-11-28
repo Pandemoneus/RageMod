@@ -22,7 +22,7 @@ public abstract class QuestOld {
 		this.id_NPCInstance_Source = id_NPCInstance_Source;
 	}
 
-	public void end(Player player, PlayerData playerData) {
+	/*public void end(Player player, PlayerData playerData) {
 		if (InventoryUtilities.checkFreeSpace(player.getInventory(), rewardData.getItem(), rewardData.getAmountOfItems())) {
 			player.sendMessage(ChatColor.LIGHT_PURPLE + questData.getEndText());
 			player.sendMessage("Received: ");
@@ -61,6 +61,6 @@ public abstract class QuestOld {
 
 	public boolean isRepeatable() {
 		return flags.isRepeatable();
-	}
+	}*/
 
 }

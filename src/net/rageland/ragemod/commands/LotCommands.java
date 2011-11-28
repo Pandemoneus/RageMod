@@ -1,8 +1,6 @@
 package net.rageland.ragemod.commands;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.Lot;
-import net.rageland.ragemod.data.Lot.LotCategory;
 import net.rageland.ragemod.entity.player.PlayerData;
 
 import org.bukkit.ChatColor;
@@ -17,7 +15,7 @@ public class LotCommands {
 		this.plugin = plugin;
 	}
 
-	public void onLotCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onLotCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2 || split.length > 4) {
 			plugin.message.parse(player, "Lot commands: <required> [optional]");
 			if (playerData.lots.size() > 0)
@@ -385,6 +383,6 @@ public class LotCommands {
 		plugin.lots.put(lot);
 
 		plugin.message.send(player, "You are no longer the owner of lot " + lot.getLotCode() + ".");
-	}
+	}*/
 
 }

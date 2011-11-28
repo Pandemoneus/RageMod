@@ -17,7 +17,7 @@ public class FactionCommands {
 		this.plugin = plugin;
 	}
 
-	public void onFactionCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onFactionCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2 || split.length > 3) {
 			plugin.message.parse(player, "Faction commands: <required> [optional]");
 			if (playerData.id_Faction == 0)
@@ -129,6 +129,6 @@ public class FactionCommands {
 		for (int faction : populations.keySet()) {
 			plugin.message.parse(player, "   " + plugin.factions.getCodedName(faction) + ": " + populations.get(faction) + " players");
 		}
-	}
+	}*/
 
 }

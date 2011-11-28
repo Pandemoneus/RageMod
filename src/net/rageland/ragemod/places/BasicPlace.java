@@ -6,8 +6,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.ChatColor;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.EntityData;
-import net.rageland.ragemod.entity.npc.NPC;
+import net.rageland.ragemod.entity.SharedData;
+import net.rageland.ragemod.entity.npc.NPCData;
 import net.rageland.ragemod.places.region.Region3D;
 import net.rageland.ragemod.pvp.PvPStatus;
 import net.rageland.ragemod.text.Title;
@@ -28,8 +28,8 @@ public abstract class BasicPlace implements Place, Title {
 	private PvPStatus pvp = PvPStatus.PEACE;
 	
 	// NPCs
-	private final HashSet<NPC> npcs = new HashSet<NPC>();
-	private final HashSet<EntityData> residents = new HashSet<EntityData>(); 
+	private final HashSet<NPCData> npcs = new HashSet<NPCData>();
+	private final HashSet<SharedData> residents = new HashSet<SharedData>(); 
 	
 	// Messages
 	private String entryMessage = "";
@@ -162,7 +162,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Adds a NPC to the place.
 	 * @param npc the NPC
 	 */
-	public void addNPC(final NPC npc) {
+	public void addNPC(final NPCData npc) {
 		if (npc == null)
 			return;
 		
@@ -173,7 +173,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Removes a NPC from the place.
 	 * @param npc the NPC
 	 */
-	public void removeNPC(final NPC npc) {
+	public void removeNPC(final NPCData npc) {
 		npcs.remove(npc);
 	}
 	

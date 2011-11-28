@@ -9,10 +9,7 @@ import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCLocation;
 import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.npc.NPCInstance;
-import net.rageland.ragemod.entity.npc.NPCInstance.NPCType;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.owned.Town;
 
@@ -26,7 +23,7 @@ public class NPCCommands {
 		this.random = new Random();
 	}
 
-	public void onNPCCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onNPCCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2 || split.length > 5) {
 			plugin.message.parse(player, "NPC commands: <required> [optional]");
 			if (true)
@@ -119,7 +116,6 @@ public class NPCCommands {
 			 * if(questNpcType.equals("0")) npc.questNPCType = 0; else
 			 * if(questNpcType.equals("1")) npc.questNPCType = 1; else
 			 * npc.questNPCType = 2;
-			 */
 
 			plugin.npcManager.addNPC(npc);
 
@@ -139,7 +135,7 @@ public class NPCCommands {
 	 * 
 	 * @param split
 	 * @return
-	 */
+	 /
 	private boolean isSpawnCommand(String[] split) {
 		if (split.length > 4 && split.length < 7) {
 			if (split[1].equalsIgnoreCase("spawn")) {
@@ -158,7 +154,7 @@ public class NPCCommands {
 	 * 
 	 * @param split
 	 * @return
-	 */
+	 /
 	private boolean isDespawnCommand(String[] split) {
 		if (split.length == 3 && split[1].equalsIgnoreCase("despawn")) {
 
@@ -168,7 +164,7 @@ public class NPCCommands {
 
 	/**
 	 * Command format: /npc addspeechmessage <npcname> <message>
-	 */
+	 /
 	private boolean isAddSpeechCommand(String[] split) {
 		if (split.length == 4 && split[1].equalsIgnoreCase("addspeechmessage"))
 			return true;
@@ -178,7 +174,7 @@ public class NPCCommands {
 
 	/**
 	 * Creates a new NPCLocation and adds it to the database
-	 */
+	 /
 	private void newloc(Player player) {
 		PlayerData playerData = plugin.players.get(player.getName());
 
@@ -212,7 +208,7 @@ public class NPCCommands {
 	 * 
 	 * @param player
 	 * @param id_NPCLocation
-	 */
+	 /
 	private void spawn(Player player, String id_NPCLocation, String npcString) {
 		PlayerData playerData = plugin.players.get(player.getName());
 		NPCLocation location;
@@ -257,7 +253,7 @@ public class NPCCommands {
 	 * 
 	 * @param player
 	 * @param name
-	 */
+	 /
 	private void create(Player player, String name, String race, String gender) {
 		int raceID = Integer.parseInt(race);
 		if (raceID < 1 || raceID > 5) {
@@ -375,6 +371,6 @@ public class NPCCommands {
 	private void despawnall(Player player) {
 		plugin.npcManager.despawnAll(true);
 		plugin.message.send(player, "Cleared all NPCs.");
-	}
+	}*/
 
 }

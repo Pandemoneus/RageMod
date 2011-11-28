@@ -1,5 +1,7 @@
 package net.rageland.ragemod.places.region;
 
+import java.util.LinkedHashMap;
+
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -114,7 +116,7 @@ public class Location3D extends Location2D {
 	 */
 	@Override
 	public String toString() {
-		return new StringBuilder(world).append(",").append(x).append(",").append(y).append(",").append(z).toString();
+		return new StringBuilder(world).append(",").append(x).append(",").append(y).append(",").append(z).append(",").append(yaw).append(",").append(pitch).toString();
 	}
 	
 	/**
@@ -123,6 +125,20 @@ public class Location3D extends Location2D {
 	@Override
 	public Location toLocation() {
 		return new Location(getWorld(), x, y, z);
+	}
+	
+	@Override
+	public LinkedHashMap<String, Object> toMap() {
+		final LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>(6);
+		
+		map.put("world", world);
+		map.put("x", x);
+		map.put("y", y);
+		map.put("z", z);
+		map.put("yaw", yaw);
+		map.put("pitch", pitch);
+		
+		return map;
 	}
 	
 	/**

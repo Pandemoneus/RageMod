@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.RageZones.Action;
-import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.data.TownLevel;
 import net.rageland.ragemod.entity.player.PlayerData;
@@ -25,7 +23,7 @@ public class TownCommands {
 		this.plugin = plugin;
 	}
 
-	public void onTownCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onTownCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2 || split.length > 3) {
 			plugin.message.parse(player, "Town commands: <required> [optional]");
 			if (playerData.isMayor && !playerData.townName.equals(""))
@@ -568,6 +566,6 @@ public class TownCommands {
 		playerData.treasuryBalance -= amount;
 
 		plugin.message.parse(player, "Withdrew " + RageMod.economy.format(amount) + " from town treasury.");
-	}
+	}*/
 
 }

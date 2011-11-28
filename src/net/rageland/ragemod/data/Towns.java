@@ -15,7 +15,7 @@ import org.bukkit.Location;
 
 public class Towns {
 
-	private HashMap<String, PlayerTown> playerTowns;
+	/*private HashMap<String, PlayerTown> playerTowns;
 	private HashMap<String, NPCTown> npcTowns;
 	private HashSet<NPCTown> outsideNPCTowns; // A collection of NPCTowns outside Zone A (subset of npcTowns)
 	private HashMap<Integer, String> playerTownIDs;
@@ -161,6 +161,6 @@ public class Towns {
 			return npcTowns.get(npcTownIDs.get(id_NPCTown));
 		else
 			return null;
-	}
+	}*/
 
 }

@@ -15,11 +15,11 @@ public interface Owner {
 	 * Adds a place to the list of owned places of the owner.
 	 * @param place the place
 	 */
-	public void addPlace(OwnedPlace place);
+	public void addPlace(final OwnedPlace place);
 	
 	/**
 	 * Removes a place of the list of owned place of the owner.
 	 * @param place the place
 	 */
-	public void removePlace(OwnedPlace place);
+	public void removePlace(final OwnedPlace place);
 }

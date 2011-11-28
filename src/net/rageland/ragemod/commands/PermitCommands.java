@@ -14,7 +14,7 @@ public class PermitCommands {
 		this.plugin = plugin;
 	}
 
-	public void onCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2 || split.length > 3) {
 			plugin.message.parse(player, "Permit commands: <required> [optional]");
 			if (true)
@@ -55,5 +55,5 @@ public class PermitCommands {
 		Player targetPlayer = plugin.getServer().getPlayer(targetPlayerData.name);
 		if (targetPlayer != null && targetPlayer.isOnline())
 			plugin.message.parse(targetPlayer, playerData.getCodedName() + " has granted you a one-week permit to build in the city.");
-	}
+	}*/
 }

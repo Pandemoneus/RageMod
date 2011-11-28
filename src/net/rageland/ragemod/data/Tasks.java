@@ -12,8 +12,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.RageZones;
-import net.rageland.ragemod.entity.npc.NPCInstance;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
@@ -26,7 +24,7 @@ public class Tasks {
 		this.plugin = plugin;
 	}
 
-	// On startup, pull all records of when tasks ran last
+	/*// On startup, pull all records of when tasks ran last
 	public void loadTaskTimes() {
 		tasks = plugin.database.taskQueries.loadTaskTimes();
 		if (tasks == null)
@@ -244,6 +242,6 @@ public class Tasks {
 
 		// Despawn NPCs
 		plugin.npcManager.despawnExpired();
-	}
+	}*/
 
 }

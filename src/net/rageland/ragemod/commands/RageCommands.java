@@ -12,7 +12,7 @@ public class RageCommands {
 		this.plugin = plugin;
 	}
 
-	public void onCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2) {
 			plugin.message.parse(player, "Rage commands: <required> [optional]");
 			if (playerData.isSteward)
@@ -47,6 +47,6 @@ public class RageCommands {
 		} catch (Exception ex) {
 			plugin.message.sendNo(player, "Error: " + ex.getMessage());
 		}
-	}
+	}*/
 
 }

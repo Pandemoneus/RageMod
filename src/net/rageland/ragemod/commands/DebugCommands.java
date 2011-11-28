@@ -18,7 +18,7 @@ public class DebugCommands {
 		this.plugin = plugin;
 	}
 
-	public void onDebugCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onDebugCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2) {
 			plugin.message.parse(player, "Debug commands: <required> [optional]");
 			if (true)
@@ -238,6 +238,6 @@ public class DebugCommands {
 		} catch (Exception ex) {
 			plugin.message.send(player, "Error: " + ex.getMessage());
 		}
-	}
+	}*/
 
 }

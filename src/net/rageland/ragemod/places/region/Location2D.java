@@ -1,6 +1,7 @@
 package net.rageland.ragemod.places.region;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.Bukkit;
@@ -103,6 +104,16 @@ public class Location2D implements Serializable {
 	 */
 	public Location toLocation() {
 		return new Location(getWorld(), x, 0, z);
+	}
+	
+	public LinkedHashMap<String, Object> toMap() {
+		final LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>(3);
+		
+		map.put("world", world);
+		map.put("x", x);
+		map.put("z", z);
+		
+		return map;
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package net.rageland.ragemod.quest;
 
 import java.util.HashSet;
 
+import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.player.PlayerData;
 
 public interface Quest {

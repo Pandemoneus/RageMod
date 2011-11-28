@@ -26,7 +26,7 @@ public class TownQueries {
 		this.plugin = plugin;
 	}
 	
-	// Load all PlayerTown data
+	/*// Load all PlayerTown data
 	public HashMap<String, PlayerTown> loadPlayerTowns()
     {
 		Connection conn = null;
@@ -351,7 +351,7 @@ public class TownQueries {
 			rageDB.close(rs, preparedStatement, conn);
 		}
 		
-	}
+	}*/
 
 
 

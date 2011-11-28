@@ -21,7 +21,7 @@ public class Commands {
 		this.plugin = plugin;
 	}
 
-	// /zone
+	/*// /zone
 	public void zone(Player player) {
 		plugin.message.parse(player, "Your current zone is " + plugin.zones.getName(player.getLocation()) + " and distance from spawn is " + (int) plugin.zones.getDistanceFromSpawn(player.getLocation()));
 	}
@@ -176,6 +176,6 @@ public class Commands {
 			plugin.message.send(player, "   " + plugin.config.NPC_AFFINITY_CODED_NAMES.get(i) + ": " + ChatColor.WHITE + affinities.get(i));
 		}
 		plugin.message.send(player, "   " + ChatColor.WHITE + "Total: " + playerData.getAffinities().size());
-	}
+	}*/
 
 }

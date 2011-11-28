@@ -14,12 +14,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Log {
 	private String pre;
 	private static final Logger LOG = Logger.getLogger("Minecraft");
+	private static Log instance;
 	
 	public Log() {
 		pre = "";
 	}
 
 	public Log(JavaPlugin plugin) {
+		instance = this;
 		if (plugin != null) {
 			pre = "[" + plugin.toString() + "] ";
 		}
@@ -53,5 +55,14 @@ public final class Log {
 	 */
 	public void severe(String message) {
 		LOG.log(Level.SEVERE, pre + message);
+	}
+	
+	/**
+	 * Returns an instance of this class.
+	 * Note that the class needs at least one instance for this to work.
+	 * @return an instance of this class, otherwise null
+	 */
+	public static Log getInstance() {
+		return instance;
 	}
 }

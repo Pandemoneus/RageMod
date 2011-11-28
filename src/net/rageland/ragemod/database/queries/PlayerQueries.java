@@ -12,14 +12,13 @@ import java.util.HashSet;
 import org.bukkit.Location;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.Permits;
 import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 public class PlayerQueries {
 
-	private DatabaseHandler rageDB;
+	/*private DatabaseHandler rageDB;
 	private RageMod plugin;
 	
 	private String playerQuery = 
@@ -606,6 +605,6 @@ public class PlayerQueries {
 		} finally {
 			rageDB.close(rs, preparedStatement, conn);
 		}	
-	}
+	}*/
 	
 }

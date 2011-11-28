@@ -1,9 +1,8 @@
 package net.rageland.ragemod.places.owned;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.npc.NPC;
+import net.rageland.ragemod.entity.npc.NPCData;
 import net.rageland.ragemod.entity.Owner;
-import net.rageland.ragemod.entity.npc.Trader;
 import net.rageland.ragemod.places.LotType;
 import net.rageland.ragemod.places.region.Region3D;
 
@@ -29,9 +28,7 @@ public class Market extends Lot {
 	 * @param npc the trader
 	 */
 	@Override
-	public void addNPC(final NPC npc) {
-		if (!(npc instanceof Trader))
-			return;
+	public void addNPC(final NPCData npc) {
 		
 		super.addNPC(npc);
 	}

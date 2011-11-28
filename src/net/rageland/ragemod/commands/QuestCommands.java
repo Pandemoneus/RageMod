@@ -12,7 +12,7 @@ public class QuestCommands {
 		this.plugin = plugin;
 	}
 
-	public void onQuestCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onQuestCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length != 2) {
 			plugin.message.send(player, "Quest commands: ");
 			plugin.message.parse(player, "    /quest abandon (Abandons your current quest)");
@@ -33,6 +33,6 @@ public class QuestCommands {
 				plugin.message.sendNo(player, "ERROR: You're not currently on a quest.");
 			}
 		}
-	}
+	}*/
 
 }

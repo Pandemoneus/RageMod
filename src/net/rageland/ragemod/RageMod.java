@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import net.rageland.ragemod.command.CommandHandler;
 import net.rageland.ragemod.data.Tasks;
 import net.rageland.ragemod.data.Towns;
 import net.rageland.ragemod.database.DatabaseHandler;
+import net.rageland.ragemod.entity.npc.NPCHandler;
 import net.rageland.ragemod.entity.player.PlayerHandler;
 import net.rageland.ragemod.factions.Faction;
 import net.rageland.ragemod.quest.QuestManager;
@@ -35,15 +35,16 @@ public class RageMod extends JavaPlugin {
 	private RMPlayerListener playerListener;
 	private RMBlockListener blockListener;
 	private RMEntityListener entityListener;
-	private static RageMod plugin;
-    private CommandHandler commandHandler = new CommandHandler(this);
+	private RMCitizensListener citizensListener;
+	private RMCitizensNPCListener citizensNPCListener;
+	private static RageMod instance;
+	private ModuleHandler modules;
 
 	private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
 
 	// Plugin info
 	public String name;
 	public String version;
-	public Log logger;
 
 	// Global data
 	public PlayerHandler players;
@@ -55,7 +56,6 @@ public class RageMod extends JavaPlugin {
 	// Semi-static data and methods
 	public RageConfig config;
 	public DatabaseHandler database;
-	public RageZones zones;
 	public Message message;
 	public QuestManager questManager;
 
@@ -64,39 +64,43 @@ public class RageMod extends JavaPlugin {
 	public static Economy economy = null;
 
 	public void onEnable() {
-		plugin = this;
+		instance = this;
+		registerPluginInfo();
+		new Log(this);
+		
 		if (!setupPermission()) {
-			logger.severe("No valid permission-supporting plugin detected! Disabling plugin...");
+			Log.getInstance().severe("No valid permission-supporting plugin detected! Disabling plugin...");
 			this.setEnabled(false);
 			return;
 		}
 
 		if (!setupEconomy()) {
-			logger.severe("No valid economy-supporting plugin detected! Disabling plugin...");
+			Log.getInstance().severe("No valid economy-supporting plugin detected! Disabling plugin...");
 			this.setEnabled(false);
 			return;
 		}
 
-		registerPluginInfo();
 		initializeVariables();
+		registerHandlers();
 		registerEvents();
 		registerCommands();
 		loadDatabaseData();
 		startScheduledTasks();
 
-		logger.info(new StringBuilder(name).append(" loaded without errors.").toString());
+		Log.getInstance().info(new StringBuilder(name).append(" loaded without errors.").toString());
 	}
 
 	public void onDisable() {
-		// this.npcManager.despawnAll();
-		logger.info(new StringBuilder(name).append(" disabled.").toString());
+		modules.saveAll();
+		getServer().getScheduler().cancelTasks(this);
+		Log.getInstance().info(new StringBuilder(name).append(" disabled.").toString());
 	}
 	
 	public static RageMod getInstance() {
-		if (plugin == null)
-			plugin = new RageMod();
+		if (instance == null)
+			instance = new RageMod();
 
-		return plugin;
+		return instance;
 	}
 
 	public boolean isDebugging(final Player player) {
@@ -115,10 +119,6 @@ public class RageMod extends JavaPlugin {
 	public String toString() {
 		return name;
 	}
-	
-    public CommandHandler getCommandHandler() {
-        return commandHandler;
-    }
     
     private void registerCommands() {
         // Page 1
@@ -129,6 +129,12 @@ public class RageMod extends JavaPlugin {
 		PluginDescriptionFile pdf = getDescription();
 		name = pdf.getName();
 		version = pdf.getVersion();
+	}
+	
+	private void registerHandlers() {
+		modules = ModuleHandler.getInstance();
+		modules.addHandler(NPCHandler.getInstance());
+		modules.loadAll();
 	}
 
 	private void registerEvents() {
@@ -150,35 +156,37 @@ public class RageMod extends JavaPlugin {
 		pm.registerEvent(Event.Type.CREATURE_SPAWN, entityListener, Priority.Normal, this);
 		pm.registerEvent(Event.Type.ENTITY_TARGET, entityListener, Event.Priority.Normal, this);
 		pm.registerEvent(Event.Type.ENTITY_DEATH, entityListener, Event.Priority.Normal, this);
+		
+		pm.registerEvent(Event.Type.CUSTOM_EVENT, citizensListener, Priority.Lowest, this);
+		pm.registerEvent(Event.Type.CUSTOM_EVENT, citizensNPCListener, Priority.Lowest, this);
 	}
 
 	private void initializeVariables() {
 		playerListener = new RMPlayerListener(this);
 		blockListener = new RMBlockListener(this);
 		entityListener = new RMEntityListener(this);
+		citizensListener = new RMCitizensListener();
+		citizensNPCListener = new RMCitizensNPCListener();
 		config = new RageConfig(this);
-		database = new DatabaseHandler(this, config);
-		logger = new Log(this);
+		//database = new DatabaseHandler(this, config);
 
 		players = new PlayerHandler(this);
-		towns = new Towns(this);
 		tasks = new Tasks(this);
 		factions = new Faction();
-		languages = new Languages(this);
+		languages = new Languages();
 
-		zones = new RageZones(this, config);
 		questManager = new QuestManager();
 		message = new Message(this);
 	}
 
 	private void loadDatabaseData() {
-		towns.loadTowns();
-		tasks.loadTaskTimes();
+		//towns.loadTowns();
+		//tasks.loadTaskTimes();
 		languages.loadDictionaries();
 	}
 
 	private void startScheduledTasks() {
-		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new RageTimer(this), 20, 20);
+		//this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new RageTimer(this), 20, 20);
 	}
 
 	private boolean setupPermission() {

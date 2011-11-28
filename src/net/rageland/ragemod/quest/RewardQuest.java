@@ -14,7 +14,7 @@ public class RewardQuest extends QuestOld
 	/**
 	 * For a RewardQuest type, the quest is finished when it starts. 
 	 */
-	public void start(Player player, PlayerData playerData)
+	/*public void start(Player player, PlayerData playerData)
 	{		
 		end(player, playerData);
 	}
@@ -29,6 +29,6 @@ public class RewardQuest extends QuestOld
 	public void statusUpdate(Player player, PlayerData playerData)
 	{
 		// No status update for this quest type
-	}
+	}*/
 
 }

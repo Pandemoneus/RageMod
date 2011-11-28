@@ -9,7 +9,7 @@ public class PlayerQuestData
 	private boolean playerOnQuest;
 	private ArrayList<Integer> completedQuests;
 
-	public PlayerQuestData()
+	/*public PlayerQuestData()
 	{
 		
 	}
@@ -48,7 +48,7 @@ public class PlayerQuestData
 	/**
 	 * Will increment the objectiveCounter if it is less then what is required
 	 * by the quest.
-	 */
+	 *
 	public void incrementObjectiveCounter()
 	{
 		if(objectiveCounter < quest.getQuestData().getObjectiveCounter())
@@ -60,7 +60,7 @@ public class PlayerQuestData
 	 * 
 	 * @param quest
 	 * @param questCounter
-	 */
+	 *
 	public void startNewQuest(QuestOld quest, int objectiveCounter)
 	{
 		this.quest = quest;
@@ -70,10 +70,10 @@ public class PlayerQuestData
 
 	/**
 	 * Resets the quest and questCounter. Called when a quest is finished.
-	 */
+	 *
 	public void endQuest()
 	{
 		playerOnQuest = false;
-	}
+	}*/
 
 }

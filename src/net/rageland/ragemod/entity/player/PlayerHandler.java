@@ -8,10 +8,14 @@ import net.rageland.ragemod.RageMod;
 
 public class PlayerHandler extends ModuleHandler {
 
+	public PlayerHandler(RageMod plugin) {
+		super(plugin);
+		// TODO Auto-generated constructor stub
+	}
 	private HashMap<String, PlayerData> players;
 	private RageMod plugin;
 
-	public PlayerHandler(RageMod plugin) {
+	/*public PlayerHandler(RageMod plugin) {
 		this.plugin = plugin;
 		players = new HashMap<String, PlayerData>();
 	}
@@ -66,6 +70,6 @@ public class PlayerHandler extends ModuleHandler {
 	// For debugging - returns the number of players loaded into memory
 	public int size() {
 		return players.size();
-	}
+	}*/
 
 }

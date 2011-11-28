@@ -2,8 +2,6 @@ package net.rageland.ragemod;
 
 import java.util.HashMap;
 
-import net.rageland.ragemod.data.Lot;
-import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.owned.Town;
@@ -29,7 +27,7 @@ public class RMBlockListener extends BlockListener {
 		this.plugin = plugin;
 	}
 
-	// Prevent block breaking without permission
+	/*// Prevent block breaking without permission
 	public void onBlockBreak(BlockBreakEvent event) {
 		Player player = event.getPlayer();
 		PlayerData playerData = plugin.players.get(player.getName());
@@ -243,6 +241,6 @@ public class RMBlockListener extends BlockListener {
 		}
 
 		return true;
-	}
+	}*/
 
 }

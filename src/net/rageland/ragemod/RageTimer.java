@@ -1,6 +1,6 @@
 package net.rageland.ragemod;
 
-public class RageTimer implements Runnable {
+public class RageTimer   {
 	private final RageMod plugin;
 	int secondHand = 0;
 
@@ -8,7 +8,7 @@ public class RageTimer implements Runnable {
 		this.plugin = plugin;
 	}
 
-	// Process timer tasks
+	/*// Process timer tasks
 	public void run() {
 
 		// Process per-minute tasks (separated out for efficiency)
@@ -32,5 +32,5 @@ public class RageTimer implements Runnable {
 		secondHand++;
 		if (secondHand == 60)
 			secondHand = 0;
-	}
+	}*/
 }

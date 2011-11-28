@@ -8,39 +8,43 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.bukkit.ChatColor;
+
 public class Language {
-	private String name;
-	private ArrayList<ArrayList<String>> dictionary; // First index is word size
-	private Pattern puncPattern;
-	private Random random;
+	private final String name;
+	private final ArrayList<ArrayList<String>> dictionary = new ArrayList<ArrayList<String>>(); // First index is word size
+	private final Pattern puncPattern;
+	private final Random random = new Random();
+	
+	public static final int MAX_WORD_LENGTH = 16; 
 
 	public Language() {
 		// Temp - set up sample dictionary
 		name = "Test Language";
 		puncPattern = Pattern.compile("([^\\.\\,\\!\\?\\;\\:]*)([\\.\\,\\!\\?\\;\\:]*)$");
-		random = new Random();
 
-		dictionary = new ArrayList<ArrayList<String>>();
-
-		// Set up banks for up to 12 letter words
-		for (int i = 0; i < 12; i++) {
+		// Set up banks for up to 16 letter words
+		for (int i = 0; i < MAX_WORD_LENGTH; i++) {
 			dictionary.add(new ArrayList<String>());
 		}
 	}
 
 	// Add a new word to the dictionary
-	public void addWord(String word) {
+	public void addWord(final String word) {
 		addWord(word, word.length());
 	}
 
-	public void addWord(String word, int length) {
+	private void addWord(final String word, final int length) {
+		if (length < 1 || word == null || word.isEmpty())
+			return;
+		
 		dictionary.get(length - 1).add(word);
 	}
 
 	// Returns a list of partially and completely translated version of the source string
-	public ArrayList<String> translate(String source) {
+	public ArrayList<String> translate(final String source) {
 		ArrayList<String> result = new ArrayList<String>();
-		String[] split = source.split(" ");
+		String[] split = source.split("\\s+");
 		int total = split.length;
 		int wordIndex;
 
@@ -59,7 +63,7 @@ public class Language {
 				wordIndex = toTranslate.remove(random.nextInt(toTranslate.size()));
 				// Don't translate any of the codes
 				if (!split[wordIndex].equals("<playerName/>") && !split[wordIndex].equals("<selfName/>"))
-					split[wordIndex] = Message.NPC_FOREIGN_COLOR + translateWord(split[wordIndex], random);
+					split[wordIndex] = Message.NPC_FOREIGN_COLOR + translateWord(split[wordIndex]);
 			}
 			result.add(join(split, " "));
 		}
@@ -68,11 +72,11 @@ public class Language {
 
 	}
 
-	private String translateWord(String word, Random random) {
+	private String translateWord(String word) {
 		// Remove the color prefix
-		word = word.substring(2);
+		word = ChatColor.stripColor(word);
 
-		Matcher matcher = puncPattern.matcher(word);
+		final Matcher matcher = puncPattern.matcher(word);
 
 		if (matcher.find())
 			word = matcher.group(1); // Separate the word without the punctuation
@@ -81,9 +85,9 @@ public class Language {
 		int wordLength = word.length();
 
 		if (wordLength > 0) {
-			// Cut all word lengths down to 12
-			if (wordLength > 12)
-				wordLength = 12;
+			// Cut all word lengths down to maximum word length
+			if (wordLength > MAX_WORD_LENGTH)
+				wordLength = MAX_WORD_LENGTH;
 
 			// Pull a random word of that length from the dictionary
 			String newWord = dictionary.get(wordLength - 1).get(random.nextInt(dictionary.get(wordLength - 1).size()));
@@ -98,16 +102,19 @@ public class Language {
 			return "";
 	}
 
-	private static String join(String[] array, String delimiter) {
-		List<String> s = Arrays.asList(array);
+	public static String join(final String[] array, final String delimiter) {
+		final List<String> s = Arrays.asList(array);
 
 		if (s == null || s.isEmpty())
 			return "";
-		Iterator<String> iter = s.iterator();
-		StringBuilder builder = new StringBuilder(iter.next());
+		
+		final Iterator<String> iter = s.iterator();
+		final StringBuilder builder = new StringBuilder(iter.next());
+		
 		while (iter.hasNext()) {
 			builder.append(delimiter).append(iter.next());
 		}
+		
 		return builder.toString();
 	}
 

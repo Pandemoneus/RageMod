@@ -38,4 +38,14 @@ public class ModuleHandler {
 		
 		return true;
 	}
+	
+	public boolean saveAll() {
+		if (handlers.isEmpty())
+			return true;
+		
+		for (Handler h : handlers)
+			h.saveData();
+		
+		return true;
+	}
 }

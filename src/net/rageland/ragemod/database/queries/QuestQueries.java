@@ -28,7 +28,7 @@ public class QuestQueries {
 		this.plugin = plugin;
 	}
 	
-	// Load all active quest objects
+	/*// Load all active quest objects
 	public HashMap<Integer, QuestOld> loadAllQuests() 
 	{
 		Connection conn = null;
@@ -120,6 +120,6 @@ public class QuestQueries {
 		} finally {
 			rageDB.close(rs, preparedStatement, conn);
 		}	
-	}
+	}*/
 
 }

@@ -37,7 +37,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
  */
 public class RMPlayerListener extends PlayerListener {
 	private final RageMod plugin;
-	private QuestCommands questCommands;
+	/*private QuestCommands questCommands;
 	private CompassCommands compassCommands;
 	private LotCommands lotCommands;
 	private TownCommands townCommands;
@@ -47,11 +47,11 @@ public class RMPlayerListener extends PlayerListener {
 	private NPCCommands npcCommands;
 	private NPCTownCommands npcTownCommands;
 	private PermitCommands permitCommands;
-	private RageCommands rageCommands;
+	private RageCommands rageCommands;*/
 
 	public RMPlayerListener(RageMod instance) {
 		plugin = instance;
-		questCommands = new QuestCommands(plugin);
+		/*questCommands = new QuestCommands(plugin);
 		compassCommands = new CompassCommands(plugin);
 		lotCommands = new LotCommands(plugin);
 		townCommands = new TownCommands(plugin);
@@ -344,7 +344,7 @@ public class RMPlayerListener extends PlayerListener {
 			// Temp: Make all portals go back to capitol
 			event.setTo(plugin.zones.Capitol_Portal);
 		}
-
+*/
 	}
 
 }

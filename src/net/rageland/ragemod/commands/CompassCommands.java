@@ -1,7 +1,6 @@
 package net.rageland.ragemod.commands;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.Lot;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.places.owned.Town;
 
@@ -17,7 +16,7 @@ public class CompassCommands
 		this.plugin = plugin;
 	}
 	
-	public void onCompassCommand(Player player, PlayerData playerData, String[] split) 
+	/*public void onCompassCommand(Player player, PlayerData playerData, String[] split) 
 	{
 		if( split.length < 2 || split.length > 3 )
 		{
@@ -96,6 +95,6 @@ public class CompassCommands
 		player.setCompassTarget(town.getCenter());
 		plugin.message.parse(player, "Compass target set to " + town.getCodedName() + ".");
 		
-	}
+	}*/
 
 }

@@ -21,7 +21,12 @@ import net.rageland.ragemod.database.queries.TownQueries;
 
 public class DatabaseHandler extends ModuleHandler {
 
-	private JDCConnectionDriver connectionDriver;
+	public DatabaseHandler(RageMod plugin) {
+		super(plugin);
+		// TODO Auto-generated constructor stub
+	}
+
+	/*private JDCConnectionDriver connectionDriver;
 	protected String url;
 	protected String databaseName;
 	protected String driver;
@@ -83,5 +88,5 @@ public class DatabaseHandler extends ModuleHandler {
 		} catch (Exception e) {
 
 		}
-	}
+	}*/
 }

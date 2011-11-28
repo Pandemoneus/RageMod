@@ -23,10 +23,10 @@ import net.rageland.ragemod.places.region.Region3D;
 
 // TODO: Store resident list in memory, there's no reason to be always pulling that from the database
 
-public class PlayerTown extends Town implements Comparable<PlayerTown> {
+public class PlayerTown {
 
 	// PlayerTowns table
-	public int id_Faction;
+	/*public int id_Faction;
 	public double treasuryBalance;
 	public double minimumBalance;
 	public Timestamp bankruptDate;
@@ -258,6 +258,6 @@ public class PlayerTown extends Town implements Comparable<PlayerTown> {
 	// Creates the corresponding location in the travel zone for town
 	private void buildTravelNode() {
 		Build.travelNode(this.travelNode, this.townLevel.size, this.id_Faction);
-	}
+	}*/
 
 }

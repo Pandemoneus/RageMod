@@ -13,7 +13,7 @@ public class FactionQueries {
 	private DatabaseHandler rageDB;
 	private RageMod plugin;
 
-	public FactionQueries(DatabaseHandler rageDB, RageMod plugin) {
+	/*public FactionQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 	}
@@ -48,6 +48,6 @@ public class FactionQueries {
 		}
 
 		return null;
-	}
+	}*/
 
 }

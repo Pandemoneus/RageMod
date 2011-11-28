@@ -4,26 +4,11 @@ package net.rageland.ragemod;
 
 import java.util.Random;
 
-import net.rageland.ragemod.data.PlayerTown;
-import net.rageland.ragemod.entity.npc.NPC;
 import net.rageland.ragemod.entity.npc.NPCHandler;
-import net.rageland.ragemod.entity.player.PlayerData;
-import net.rageland.ragemod.places.owned.Town;
-import net.rageland.ragemod.quest.KillCreatureQuest;
-import net.rageland.ragemod.utilities.GeneralUtilities;
-
-import org.bukkit.entity.Creature;
-import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityListener;
-import org.bukkit.event.entity.EntityTargetEvent;
-import org.martin.bukkit.npclib.NpcEntityTargetEvent;
 
 /**
  * RageMod entity listener
@@ -38,8 +23,20 @@ public class RMEntityListener extends EntityListener {
 		this.plugin = plugin;
 		this.random = new Random();
 	}
+	
+	public void onEntityDamage(final EntityDamageEvent event) {
+		if (event.isCancelled())
+			return;
+		
+		final Entity defender = event.getEntity();
+		final NPCHandler eh = NPCHandler.getInstance();
+		
+		if (defender instanceof HumanEntity) {
+			
+		}
+	}
 
-	// Called when an entity damages another entity
+	/*// Called when an entity damages another entity
 	@Override
 	public void onEntityDamage(EntityDamageEvent rawEvent) {
 		Entity defenderEntity = rawEvent.getEntity();
@@ -199,9 +196,6 @@ public class RMEntityListener extends EntityListener {
 		}
 	}
 
-	/**
-	 * Called on entityTarget. Used for detecting right clicks on the NPC
-	 */
 	public void onEntityTarget(EntityTargetEvent event) {
 		if ((event instanceof NpcEntityTargetEvent)) {
 			NpcEntityTargetEvent netEvent = (NpcEntityTargetEvent) event;
@@ -210,5 +204,5 @@ public class RMEntityListener extends EntityListener {
 				npcEntity.rightClickAction((Player) event.getTarget());
 			}
 		}
-	}
+	}*/
 }

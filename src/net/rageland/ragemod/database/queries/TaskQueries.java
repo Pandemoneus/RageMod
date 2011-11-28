@@ -20,7 +20,7 @@ public class TaskQueries {
 		this.plugin = plugin;
 	}
 
-	// Load the latest ran task times for all tasks
+	/*// Load the latest ran task times for all tasks
 	public HashMap<String, Timestamp> loadTaskTimes() // The refactoring broke it here - DC
 	{
 		HashMap<String, Timestamp> tasks = new HashMap<String, Timestamp>();
@@ -64,6 +64,6 @@ public class TaskQueries {
 		} finally {
 			rageDB.close(rs, preparedStatement, conn);
 		}
-	}
+	}*/
 
 }

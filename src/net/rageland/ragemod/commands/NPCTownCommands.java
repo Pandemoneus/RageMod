@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCLocation;
-import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.entity.npc.NPCData;
 import net.rageland.ragemod.entity.player.PlayerData;
@@ -21,7 +19,7 @@ public class NPCTownCommands {
 		this.plugin = plugin;
 	}
 
-	public void onNPCTownCommand(Player player, PlayerData playerData, String[] split) {
+	/*public void onNPCTownCommand(Player player, PlayerData playerData, String[] split) {
 		if (split.length < 2 || split.length > 5) {
 			plugin.message.parse(player, "NPCTown commands: <required> [optional]");
 			if (playerData.isSteward)
@@ -395,6 +393,6 @@ public class NPCTownCommands {
 		}
 		return;
 
-	}
+	}*/
 
 }

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import net.rageland.ragemod.entity.player.PlayerData;
 
 public class NPCSpeechData {
-	private static HashMap<String, NPCSpeechData> allData;
+	private static HashMap<String, NPCSpeechData> allData = new HashMap<String, NPCSpeechData>();
 	private String identifier;
 	
 	private ArrayList<NPCPhrase> messages;
@@ -14,13 +14,12 @@ public class NPCSpeechData {
 	private HashMap<Integer, NPCPhrase> followups;
 	private NPCData npcData;
 
-	private int messagePointer;
+	private int messagePointer = 0;
 	private int radius = 20;
 	private int interval = 30;
 
 	public NPCSpeechData(ArrayList<NPCPhrase> messages, NPCPhrase initialGreeting, HashMap<Integer, NPCPhrase> followups, NPCData npcData) {
 		this.messages = messages;
-		messagePointer = 0;
 		this.initialGreeting = initialGreeting;
 		this.followups = followups;
 		this.npcData = npcData;
@@ -28,16 +27,11 @@ public class NPCSpeechData {
 		allData.put(identifier, this);
 	}
 	
-	static {
-		if (allData == null)
-			allData = new HashMap<String, NPCSpeechData>();
-	}
-	
-	public static NPCSpeechData fromIdentifier(String identifier) {
+	public static NPCSpeechData fromIdentifier(final String identifier) {
 		return allData.get(identifier);
 	}
 
-	public String getNextMessage(PlayerData playerData) {
+	public String getNextMessage(final PlayerData playerData) {
 		if (messages.size() > 0) {
 			String message = messages.get(messagePointer).getMessage(playerData);
 
@@ -47,14 +41,14 @@ public class NPCSpeechData {
 
 			return message;
 		} else {
-			return "I am error.";
+			return "I am supposed to have text, but somehow failed loading it.";
 		}
 	}
 
-	// Gets the message for a first-time meeting
+	/*// Gets the message for a first-time meeting
 	public String getInitialGreeting(PlayerData playerData) {
 		return initialGreeting.getMessage(playerData);
-	}
+	}*/
 
 	// Gets the message for a followup encounter
 	public String getFollowupGreeting(PlayerData playerData) {

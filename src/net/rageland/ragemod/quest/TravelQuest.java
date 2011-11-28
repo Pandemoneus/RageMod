@@ -12,10 +12,7 @@ public class TravelQuest extends QuestOld
 		super(questData, rewardData, flags);
 	}
 
-	/**
-	 * A travel quest does not have any requirements to be fulfilled.
-	 * This quest type should not be attached to a startendquest.
-	 */
+	/*
 	@Override
 	public boolean isFinished(PlayerData playerData)
 	{
@@ -26,5 +23,5 @@ public class TravelQuest extends QuestOld
 	public void statusUpdate(Player player, PlayerData playerData)
 	{
 		// No status update for a travel quest.
-	}
+	}*/
 }

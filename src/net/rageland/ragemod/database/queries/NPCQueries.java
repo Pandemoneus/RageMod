@@ -11,16 +11,10 @@ import java.util.Random;
 
 import org.bukkit.Location;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.data.NPCLocation;
-import net.rageland.ragemod.data.NPCLocationPool;
-import net.rageland.ragemod.data.NPCPool;
-import net.rageland.ragemod.data.NPCTown;
 import net.rageland.ragemod.database.DatabaseHandler;
 import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.npc.NPCInstance;
 import net.rageland.ragemod.entity.npc.NPCPhrase;
 import net.rageland.ragemod.entity.npc.NPCSpeechData;
-import net.rageland.ragemod.entity.npc.NPCInstance.NPCType;
 import net.rageland.ragemod.entity.player.PlayerData;
 import net.rageland.ragemod.text.Language;
 import net.rageland.ragemod.utilities.GeneralUtilities;
@@ -36,7 +30,7 @@ public class NPCQueries {
 		this.random = new Random();
 	}
 
-	// Load all words for languages
+	/*// Load all words for languages
 	public HashMap<Integer, Language> loadDictionaries() {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
@@ -413,6 +407,6 @@ public class NPCQueries {
 
 		return false;
 
-	}
+	}*/
 
 }
