@@ -11,7 +11,6 @@ import net.rageland.ragemod.entity.npc.NPCHandler;
 import net.rageland.ragemod.entity.player.PlayerHandler;
 import net.rageland.ragemod.factions.Faction;
 import net.rageland.ragemod.quest.QuestManager;
-import net.rageland.ragemod.text.Languages;
 import net.rageland.ragemod.text.Message;
 import net.rageland.ragemod.utilities.Log;
 
@@ -51,7 +50,6 @@ public class RageMod extends JavaPlugin {
 	public Towns towns;
 	public Tasks tasks;
 	public Faction factions;
-	public Languages languages;
 
 	// Semi-static data and methods
 	public RageConfig config;
@@ -173,7 +171,6 @@ public class RageMod extends JavaPlugin {
 		players = new PlayerHandler(this);
 		tasks = new Tasks(this);
 		factions = new Faction();
-		languages = new Languages();
 
 		questManager = new QuestManager();
 		message = new Message(this);
@@ -182,7 +179,6 @@ public class RageMod extends JavaPlugin {
 	private void loadDatabaseData() {
 		//towns.loadTowns();
 		//tasks.loadTaskTimes();
-		languages.loadDictionaries();
 	}
 
 	private void startScheduledTasks() {

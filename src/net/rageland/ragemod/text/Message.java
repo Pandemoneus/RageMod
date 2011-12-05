@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 // Contains methods for sending and formatting messages
 public class Message {
 	private RageMod plugin;
-	private NPCParsing npcParsing;
 
 	private Pattern playerPattern;
 	private Pattern commandPattern;
@@ -43,7 +42,6 @@ public class Message {
 
 	public Message(RageMod plugin) {
 		this.plugin = plugin;
-		this.npcParsing = new NPCParsing(plugin);
 
 		playerPattern = Pattern.compile("<p(.)>(\\w+)</p.>");
 		townPattern = Pattern.compile("<t(.)>(.+)</t.>");

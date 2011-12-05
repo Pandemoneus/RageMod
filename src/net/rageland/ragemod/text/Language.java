@@ -8,68 +8,74 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.rageland.ragemod.entity.Race;
+import net.rageland.ragemod.entity.player.PlayerData;
+
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.ChatColor;
 
 public class Language {
-	private final String name;
+	public final String name;
+	public final boolean isForeign;
 	private final ArrayList<ArrayList<String>> dictionary = new ArrayList<ArrayList<String>>(); // First index is word size
-	private final Pattern puncPattern;
+	private final Pattern puncPattern = Pattern.compile("([^\\.\\,\\!\\?\\;\\:]*)([\\.\\,\\!\\?\\;\\:]*)$");
 	private final Random random = new Random();
 	
-	public static final int MAX_WORD_LENGTH = 16; 
+	public static final int MAX_WORD_LENGTH = 12; 
 
-	public Language() {
-		// Temp - set up sample dictionary
-		name = "Test Language";
-		puncPattern = Pattern.compile("([^\\.\\,\\!\\?\\;\\:]*)([\\.\\,\\!\\?\\;\\:]*)$");
-
-		// Set up banks for up to 16 letter words
+	public Language(final String name, final boolean isForeign) {
+		this.name = name;
+		this.isForeign = isForeign;
+		
+		// Setup dictionary for up to MAX_WORD_LENGTH letter words
 		for (int i = 0; i < MAX_WORD_LENGTH; i++) {
 			dictionary.add(new ArrayList<String>());
 		}
 	}
 
-	// Add a new word to the dictionary
 	public void addWord(final String word) {
-		addWord(word, word.length());
-	}
-
-	private void addWord(final String word, final int length) {
-		if (length < 1 || word == null || word.isEmpty())
+		if (word == null || word.isEmpty())
 			return;
 		
-		dictionary.get(length - 1).add(word);
+		dictionary.get(word.length() - 1).add(word);
 	}
 
-	// Returns a list of partially and completely translated version of the source string
-	public ArrayList<String> translate(final String source) {
-		ArrayList<String> result = new ArrayList<String>();
-		String[] split = source.split("\\s+");
-		int total = split.length;
-		int wordIndex;
-
-		// Add color prefixes to the English words
-		for (int i = 0; i < split.length; i++)
-			split[i] = Message.NPC_TEXT_COLOR + split[i];
+	public String translate(final String source, final int skillLevel) {
+		if (source == null)
+			return null;
+		
+		final String[] split = source.split("\\s+");
+		final int total = split.length;
 
 		// Create an array of numbers that represents the words not translated yet
-		ArrayList<Integer> toTranslate = new ArrayList<Integer>();
+		final ArrayList<Integer> toTranslate = new ArrayList<Integer>();
 		for (int i = 0; i < total; i++)
 			toTranslate.add(i);
 
-		// Go through 4 passes to get 25%, 50%, 75%, and 100% translation
-		for (int i = 1; i <= 4; i++) {
-			while (toTranslate.size() > (total * (1 - ((double) i / 4)))) {
-				wordIndex = toTranslate.remove(random.nextInt(toTranslate.size()));
-				// Don't translate any of the codes
-				if (!split[wordIndex].equals("<playerName/>") && !split[wordIndex].equals("<selfName/>"))
-					split[wordIndex] = Message.NPC_FOREIGN_COLOR + translateWord(split[wordIndex]);
+		final int percentage = skillLevel >= 0 ? (total * skillLevel) / 100 : 0;
+		
+		while (toTranslate.size() > (percentage)) {
+			final int wordIndex = toTranslate.remove(random.nextInt(toTranslate.size()));
+			// Don't translate any of the codes
+			if (!split[wordIndex].equals("$player") && !split[wordIndex].equals("$myname")) {
+				split[wordIndex] = Message.NPC_FOREIGN_COLOR + translateWord(split[wordIndex]);
+			} else {
+				split[wordIndex] = Message.NPC_TEXT_COLOR + split[wordIndex];
 			}
-			result.add(join(split, " "));
+		}
+		
+		for (final int i : toTranslate) {
+			split[i] = Message.NPC_TEXT_COLOR + split[i];
 		}
 
-		return result;
-
+		return join(split, " ");
+	}
+	
+	public String translate(final String source, final PlayerData player) {
+		if (player == null)
+			return source;
+		
+		return translate(source, player.getLanguageSkill(Race.fromLanguage(this)));
 	}
 
 	private String translateWord(String word) {
@@ -109,13 +115,30 @@ public class Language {
 			return "";
 		
 		final Iterator<String> iter = s.iterator();
-		final StringBuilder builder = new StringBuilder(iter.next());
+		final StringBuilder sb = new StringBuilder(iter.next());
 		
 		while (iter.hasNext()) {
-			builder.append(delimiter).append(iter.next());
+			sb.append(delimiter).append(iter.next());
 		}
 		
-		return builder.toString();
+		return sb.toString();
 	}
-
+	
+	@Override
+	public boolean equals(final Object o) {
+		if (!(o instanceof Language))
+			return false;
+		
+		final Language l = (Language) o;
+		
+		return this.name.equalsIgnoreCase(l.name);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+    public int hashCode() {
+    	return new HashCodeBuilder(23, 43).append(name).toHashCode();
+    }
 }
