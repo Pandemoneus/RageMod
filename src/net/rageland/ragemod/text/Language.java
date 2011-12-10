@@ -139,6 +139,9 @@ public class Language {
 	 */
 	@Override
     public int hashCode() {
-    	return new HashCodeBuilder(23, 43).append(name).toHashCode();
+		HashCodeBuilder hcb = new HashCodeBuilder();
+		hcb.append("Test");
+		hcb.append(isForeign);
+    	return hcb.toHashCode();
     }
 }

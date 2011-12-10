@@ -14,6 +14,7 @@ import net.rageland.ragemod.quest.QuestManager;
 import net.rageland.ragemod.text.Message;
 import net.rageland.ragemod.utilities.Log;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

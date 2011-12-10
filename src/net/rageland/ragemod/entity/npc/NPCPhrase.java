@@ -1,39 +1,33 @@
 package net.rageland.ragemod.entity.npc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-
-import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.player.PlayerData;
 
-// Represents a single phrase uttered by an NPC
 public class NPCPhrase {
 	private final String message;
-	private final NPCData npcData;
 
 	public NPCPhrase(final String message, final NPCData npcData) {
 		this.message = message;
-		this.npcData = npcData;
 	}
 
-	public String getMessage(final PlayerData player, final Race race) {
-		if (player == null || race == null)
+	public String getMessage(final NPCData npc, final PlayerData player) {
+		if (player == null || npc == null)
 			return null;
 		
+		final Race race = npc.getRace();
+		
 		if (!race.getLanguage().isForeign || player.getLanguageSkill(race) >= 100)
-			return parse(message, player);
+			return parse(npc, player, message);
 		else
-			return getTranslation(player, race);
+			return getTranslation(npc, player);
 	}
 
-	private String getTranslation(final PlayerData player, final Race race) {		return parse(race.getLanguage().translate(message, player), player);
+	private String getTranslation(final NPCData npc, final PlayerData player) {		return parse(npc, player, npc.getRace().getLanguage().translate(message, player));
 	}
 
-	private String parse(String toParse, final  PlayerData player) {
+	private String parse(final NPCData npc, final PlayerData player, String toParse) {
 		toParse = toParse.replace("$player", player.getName());
-		toParse = toParse.replace("$myname", npcData.getName());
+		toParse = toParse.replace("$myname", npc.getName());
 		return toParse;
 	}
 

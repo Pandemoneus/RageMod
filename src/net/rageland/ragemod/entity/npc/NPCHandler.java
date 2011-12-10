@@ -13,10 +13,12 @@ import net.rageland.ragemod.utilities.Log;
 
 public final class NPCHandler implements Handler {
 	private final HashMap<Integer, NPCData> npcs = new HashMap<Integer, NPCData>();
-	private final Configuration config;
+	private final Configuration npcConfig;
+	public final Configuration speechConfig;
 	private static NPCHandler instance;
 	
-	public static final String CONFIG_NAME = "npcs.yml";
+	public static final String CONFIG_NAME_NPC = "npcs.yml";
+	public static final String CONFIG_NAME_SPEECH = "speech.yml";
 	
 	private NPCHandler() {
 		final ModuleHandler mh = ModuleHandler.getInstance();
@@ -24,12 +26,8 @@ public final class NPCHandler implements Handler {
 		
 		mh.addHandler(this);
 		
-		config = new Configuration(rm, CONFIG_NAME);
-		addDefaults();
-	}
-	
-	private void addDefaults() {
-				
+		npcConfig = new Configuration(rm, CONFIG_NAME_NPC);
+		speechConfig = new Configuration(rm, CONFIG_NAME_SPEECH);
 	}
 	
 	public boolean has(final int uid) {
@@ -68,9 +66,8 @@ public final class NPCHandler implements Handler {
 		return instance;
 	}
 
-	@Override
 	public boolean loadData() {
-		final YamlConfiguration c = config.config;
+		final YamlConfiguration c = npcConfig.config;
 		int counter = 0;
 		
 		try {
@@ -88,15 +85,14 @@ public final class NPCHandler implements Handler {
 			
 			return true;
 		} catch (YAMLException yaml) {
-			Log.getInstance().severe("Failed loading the configuration for " + config.file);
+			Log.getInstance().severe("Failed loading the configuration for " + npcConfig.file);
 			Log.getInstance().severe(yaml.getMessage());
 			return false;
 		}
 	}
 	
-	@Override
 	public boolean saveData() {
-		final YamlConfiguration c = config.config;
+		final YamlConfiguration c = npcConfig.config;
 		int counter = 0;
 		
 		try {
@@ -106,12 +102,12 @@ public final class NPCHandler implements Handler {
 				counter++;
 			}
 			
-			config.save();
+			npcConfig.save();
 			Log.getInstance().info(new StringBuilder("Saved ").append(counter).append(" entities.").toString());
 			
 			return true;
 		} catch (YAMLException yaml) {
-			Log.getInstance().severe("Failed saving the configuration for " + config.file);
+			Log.getInstance().severe("Failed saving the configuration for " + npcConfig.file);
 			Log.getInstance().severe(yaml.getMessage());
 			return false;
 		}

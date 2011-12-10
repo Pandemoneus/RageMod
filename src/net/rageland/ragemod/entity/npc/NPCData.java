@@ -3,11 +3,14 @@ package net.rageland.ragemod.entity.npc;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.SharedData;
+import net.rageland.ragemod.utilities.ConfigurationUtilities;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 public class NPCData extends SharedData {
@@ -40,6 +43,13 @@ public class NPCData extends SharedData {
 		affinities.put(player.getName(), affinity);
 	}
 	
+	public float getAffinityToPlayer(final OfflinePlayer player) {
+		if (player == null)
+			return 0;
+		
+		return affinities.get(player.getName());
+	}
+	
 	public NPCSpeechData getSpeech() {
 		return NPCSpeechData.fromIdentifier(speechDataIdentifier);
 	}
@@ -52,7 +62,17 @@ public class NPCData extends SharedData {
     	final Race race = Race.fromName(section.getString("race"));
     	final String speechDataIdentifier = section.getString("speech");
     	
-    	return new NPCData(name, Integer.parseInt(section.getName()), race, speechDataIdentifier);
+    	final NPCData data = new NPCData(name, Integer.parseInt(section.getName()), race, speechDataIdentifier);
+    	
+    	if (section.getConfigurationSection("affinity") != null) {
+	    	final LinkedHashMap<String, Object> map = ConfigurationUtilities.feedNewMap(section.getConfigurationSection("affinity"));
+	
+			for (final Entry<String, Object> entry : map.entrySet()) {
+				data.setAffinityToPlayer(Bukkit.getOfflinePlayer(entry.getKey()), (Float) entry.getValue());
+			}
+    	}
+    	
+    	return data;
     }
 
 	public Map<String, Object> save() {
@@ -61,6 +81,7 @@ public class NPCData extends SharedData {
 		map.put("name", getName());
 		map.put("race", getRace().getName());
 		map.put("speech", speechDataIdentifier);
+		map.put("affinities", affinities);
 		
 		return map;
 	}
