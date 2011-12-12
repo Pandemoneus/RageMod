@@ -13,7 +13,7 @@ import net.rageland.ragemod.entity.SharedData;
 import net.rageland.ragemod.utilities.ConfigurationUtilities;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
-public class NPCData extends SharedData {
+public class NpcData extends SharedData {
 	// Persistant
 	public final int uid;
 	
@@ -24,7 +24,7 @@ public class NPCData extends SharedData {
 	public static final float MIN_AFFINITY = -10.0F;
 	public static final float MAX_AFFINITY = 10.0F;
 	
-	public NPCData(final String name, final int uid, final Race race, final String speechDataIdentifier) {
+	public NpcData(final String name, final int uid, final Race race, final String speechDataIdentifier) {
 		super(name, race);
 		this.uid = uid;
 		this.speechDataIdentifier = speechDataIdentifier == null ? "" : speechDataIdentifier;
@@ -50,11 +50,11 @@ public class NPCData extends SharedData {
 		return affinities.get(player.getName());
 	}
 	
-	public NPCSpeechData getSpeech() {
-		return NPCSpeechData.fromIdentifier(speechDataIdentifier);
+	public NpcSpeechData getSpeech() {
+		return NpcSpeechData.fromIdentifier(speechDataIdentifier);
 	}
 	
-    public static NPCData getDataFromConfigurationSection(final ConfigurationSection section) {
+    public static NpcData getDataFromConfigurationSection(final ConfigurationSection section) {
     	if (section == null)
     		return null;
     	
@@ -62,10 +62,10 @@ public class NPCData extends SharedData {
     	final Race race = Race.fromName(section.getString("race"));
     	final String speechDataIdentifier = section.getString("speech");
     	
-    	final NPCData data = new NPCData(name, Integer.parseInt(section.getName()), race, speechDataIdentifier);
+    	final NpcData data = new NpcData(name, Integer.parseInt(section.getName()), race, speechDataIdentifier);
     	
     	if (section.getConfigurationSection("affinity") != null) {
-	    	final LinkedHashMap<String, Object> map = ConfigurationUtilities.feedNewMap(section.getConfigurationSection("affinity"));
+	    	final LinkedHashMap<String, Object> map = ConfigurationUtilities.feedNewStringMap(section.getConfigurationSection("affinity"));
 	
 			for (final Entry<String, Object> entry : map.entrySet()) {
 				data.setAffinityToPlayer(Bukkit.getOfflinePlayer(entry.getKey()), (Float) entry.getValue());

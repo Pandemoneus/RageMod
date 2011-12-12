@@ -44,26 +44,4 @@ public class Configuration {
 	        return false;
 	    }
 	}
-	
-	@SuppressWarnings("unchecked")
-	public static boolean saveMap(final ConfigurationSection cs, final Map<String, Object> map) {
-		if (cs == null || map == null)
-			return true;
-		
-		final Iterator<Entry<String, Object>> iter = map.entrySet().iterator();
-		
-		while (iter.hasNext()) {
-			final Entry<String, Object> entry = iter.next();
-			final Object value = entry.getValue();
-			final String key = entry.getKey();
-			
-			if (value instanceof Map) {
-				saveMap(cs.createSection(key), (Map<String, Object>) value);
-			} else {
-				cs.set(key, value);
-			}
-		}
-		
-		return true;
-	}
 }

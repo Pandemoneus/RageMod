@@ -5,7 +5,7 @@ import java.util.Random;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-public class NPCUtilities {
+public class NpcUtilities {
 	public static Location findValidRandomNPCSpawnInLocation(Location min, Location max, int standardHeight) {
 		int maxRetries = 20;
 		Random rand = new Random();

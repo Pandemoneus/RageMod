@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import net.rageland.ragemod.Build;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.text.Message;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 

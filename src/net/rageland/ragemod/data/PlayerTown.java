@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 import net.rageland.ragemod.Build;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.places.region.Region3D;
 

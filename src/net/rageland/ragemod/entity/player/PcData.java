@@ -13,19 +13,17 @@ import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.SharedData;
 import net.rageland.ragemod.places.OwnedPlace;
 import net.rageland.ragemod.places.region.Location3D;
+import net.rageland.ragemod.text.Language;
 
-public class PlayerData extends SharedData {
+public class PcData extends SharedData {
+	
+	private final HashMap<Race, Integer> reputation = new HashMap<Race, Integer>();
+	private final HashMap<Language, Integer> languageSkillLevel = new HashMap<Language, Integer>();
 
-	protected PlayerData(String name, Race race) {
+	public PcData(String name, Race race) {
 		super(name, race);
-		// TODO Auto-generated constructor stub
 	}
 
-
-	private final HashMap<Race, Integer> reputation = new HashMap<Race, Integer>();
-	
-	private boolean isMember = false;
-	private Date memberExpiration;
 	private float bounty;
 	private float extraBounty;
 	
@@ -45,15 +43,16 @@ public class PlayerData extends SharedData {
 		return null;
 	}
 
-
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public int getLanguageSkill(Race race) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getLanguageSkill(final Race race) {
+		if (race == null)
+			return 0;
+		
+		final Language lang = race.getLanguage();
+		
+		if (!languageSkillLevel.containsKey(lang)) {
+			languageSkillLevel.put(lang, 0);
+		}
+		
+		return languageSkillLevel.get(lang);
 	}
 }

@@ -2,34 +2,36 @@ package net.rageland.ragemod.entity.npc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 
 import net.rageland.ragemod.Configuration;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.Race;
+import net.rageland.ragemod.entity.player.PcData;
+import net.rageland.ragemod.utilities.ConfigurationUtilities;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
-public class NPCSpeechData {
-	private static HashMap<String, NPCSpeechData> allData = new HashMap<String, NPCSpeechData>();
-	public final String identifier;
-	public final NPCData npc;
+public class NpcSpeechData {
+	public final NpcData npc;
 	
-	private NPCPhrase initialGreeting;
-	private final ArrayList<NPCPhrase> messages = new ArrayList<NPCPhrase>();
-	private final ArrayList<NPCPhrase> followups = new ArrayList<NPCPhrase>(5);
+	private NpcPhrase initialGreeting;
+	private final ArrayList<NpcPhrase> messages = new ArrayList<NpcPhrase>();
+	private final ArrayList<NpcPhrase> followups = new ArrayList<NpcPhrase>(5);
 
 	private int messagePointer = 0;
 
-	public NPCSpeechData(final String identifer, final NPCData npc) {
-		this.identifier = identifer;
+	public NpcSpeechData(final NpcData npc) {
 		this.npc = npc;
-
-		allData.put(identifier, this);
 	}
 	
-	public static NPCSpeechData fromIdentifier(final String identifier) {
+	public static NpcSpeechData fromIdentifier(final String identifier) {
 		return allData.get(identifier);
 	}
 
-	public String getNextMessage(final PlayerData playerData) {
+	public String getNextMessage(final PcData playerData) {
 		if (messages.size() > 0) {
 			String message = messages.get(messagePointer).getMessage(npc, playerData);
 
@@ -43,7 +45,7 @@ public class NPCSpeechData {
 		}
 	}
 
-	public String getInitialGreeting(final PlayerData playerData) {
+	public String getInitialGreeting(final PcData playerData) {
 		if (initialGreeting == null)
 			return null;
 		
@@ -51,7 +53,7 @@ public class NPCSpeechData {
 	}
 
 	// Gets the message for a followup encounter
-	public String getFollowupGreeting(PlayerData playerData) {
+	public String getFollowupGreeting(PcData playerData) {
 		// Convert the -10 to 10 affinity float value to the -2 to 2 affinity integer code
 		//int affinityCode = GeneralUtilities.getAffinityCode(playerData.getAffinity();
 
@@ -59,7 +61,28 @@ public class NPCSpeechData {
 		return "";
 	}
 
-	public void addMessage(final NPCPhrase message) {
+	public void addMessage(final NpcPhrase message) {
 		messages.add(message);
 	}
+
+    public static NpcSpeechData getDataFromConfigurationSection(final ConfigurationSection section) {
+    	if (section == null)
+    		return null;
+    	
+    	final String name = section.getString("name");
+    	final Race race = Race.fromName(section.getString("race"));
+    	final String speechDataIdentifier = section.getString("speech");
+    	
+    	final NpcData data = new NpcData(name, Integer.parseInt(section.getName()), race, speechDataIdentifier);
+    	
+    	if (section.getConfigurationSection("affinity") != null) {
+	    	final LinkedHashMap<String, Object> map = ConfigurationUtilities.feedNewStringMap(section.getConfigurationSection("affinity"));
+	
+			for (final Entry<String, Object> entry : map.entrySet()) {
+				data.setAffinityToPlayer(Bukkit.getOfflinePlayer(entry.getKey()), (Float) entry.getValue());
+			}
+    	}
+    	
+    	return data;
+    }
 }

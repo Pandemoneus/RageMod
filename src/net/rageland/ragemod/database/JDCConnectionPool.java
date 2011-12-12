@@ -5,10 +5,10 @@ import java.util.*;
 
 class ConnectionReaper extends Thread {
 
-	private JDCConnectionPool pool;
+	private JdcConnectionPool pool;
 	private final long delay = 3600000; // TODO: this was 300000
 
-	ConnectionReaper(JDCConnectionPool pool) {
+	ConnectionReaper(JdcConnectionPool pool) {
 		this.pool = pool;
 	}
 
@@ -33,10 +33,10 @@ class ConnectionReaper extends Thread {
  * 
  */
 class ConnectionKeepAlive extends Thread {
-	private Vector<JDCConnection> connections;
+	private Vector<JdcConnection> connections;
 	private final int interval = 60000;
 
-	public ConnectionKeepAlive(Vector<JDCConnection> connections) {
+	public ConnectionKeepAlive(Vector<JdcConnection> connections) {
 		this.connections = connections;
 	}
 
@@ -46,7 +46,7 @@ class ConnectionKeepAlive extends Thread {
 				sleep(interval);
 			} catch (InterruptedException e) {
 			}
-			for (JDCConnection conn : connections) {
+			for (JdcConnection conn : connections) {
 				PreparedStatement ps;
 
 				try {
@@ -62,9 +62,9 @@ class ConnectionKeepAlive extends Thread {
 
 }
 
-public class JDCConnectionPool {
+public class JdcConnectionPool {
 
-	public Vector<JDCConnection> connections;
+	public Vector<JdcConnection> connections;
 	private String url,
 			user,
 			password;
@@ -73,12 +73,12 @@ public class JDCConnectionPool {
 	private ConnectionKeepAlive pinger;
 	final private int poolsize = 20;
 
-	public JDCConnectionPool(String url, String user, String password, long timeout) {
+	public JdcConnectionPool(String url, String user, String password, long timeout) {
 		this.url = url;
 		this.user = user;
 		this.password = password;
 		this.timeout = timeout;
-		connections = new Vector<JDCConnection>(poolsize);
+		connections = new Vector<JdcConnection>(poolsize);
 		reaper = new ConnectionReaper(this);
 		reaper.start();
 		//pinger = new ConnectionKeepAlive(connections);
@@ -88,10 +88,10 @@ public class JDCConnectionPool {
 	public synchronized void reapConnections() {
 
 		long stale = System.currentTimeMillis() - timeout;
-		Enumeration<JDCConnection> connlist = connections.elements();
+		Enumeration<JdcConnection> connlist = connections.elements();
 
 		while ((connlist != null) && (connlist.hasMoreElements())) {
-			JDCConnection conn = (JDCConnection) connlist.nextElement();
+			JdcConnection conn = (JdcConnection) connlist.nextElement();
 
 			//System.out.println("[RAGE] Conn. " + connections.indexOf(conn) + ": inUse: " + conn.inUse() + ", stale: " + ((stale-conn.getLastUse())/1000) + " validate(): " + conn.validate());
 
@@ -111,22 +111,22 @@ public class JDCConnectionPool {
 
 	public synchronized void closeConnections() {
 
-		Enumeration<JDCConnection> connlist = connections.elements();
+		Enumeration<JdcConnection> connlist = connections.elements();
 
 		while ((connlist != null) && (connlist.hasMoreElements())) {
-			JDCConnection conn = (JDCConnection) connlist.nextElement();
+			JdcConnection conn = (JdcConnection) connlist.nextElement();
 			removeConnection(conn);
 		}
 	}
 
-	private synchronized void removeConnection(JDCConnection conn) {
+	private synchronized void removeConnection(JdcConnection conn) {
 		connections.removeElement(conn);
 	}
 
 	public synchronized Connection getConnection() throws SQLException {
 		long stale = System.currentTimeMillis() - timeout; // DC - added stale checking to getConnection - don't even try with old connections
 
-		for (JDCConnection connection : connections) {
+		for (JdcConnection connection : connections) {
 			if (stale < connection.getLastUse() && (connection.validate() && connection.lease())) {
 				//System.out.println("[RAGE] Getting connection " + connections.indexOf(connection));
 				return connection;
@@ -136,14 +136,14 @@ public class JDCConnectionPool {
 		//System.out.println("[RAGE] Creating new connection");
 
 		Connection conn = DriverManager.getConnection(url, user, password);
-		JDCConnection newConnection = new JDCConnection(conn, this);
+		JdcConnection newConnection = new JdcConnection(conn, this);
 		newConnection.lease();
 		connections.addElement(newConnection);
 
 		return newConnection;
 	}
 
-	public synchronized void returnConnection(JDCConnection conn) {
+	public synchronized void returnConnection(JdcConnection conn) {
 		conn.expireLease();
 	}
 }

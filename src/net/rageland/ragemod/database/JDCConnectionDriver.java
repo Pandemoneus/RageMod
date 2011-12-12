@@ -4,21 +4,21 @@ import java.sql.*;
 import java.util.*;
 import java.util.logging.Logger;
 
-public class JDCConnectionDriver implements Driver {
+public class JdcConnectionDriver implements Driver {
 
 	public static final String URL_PREFIX = "jdbc:jdc:";
 	private static final int MAJOR_VERSION = 1;
 	private static final int MINOR_VERSION = 0;
-	private JDCConnectionPool pool;
+	private JdcConnectionPool pool;
 
-	public JDCConnectionDriver(String driver, String url, String user, String password, long timeout) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+	public JdcConnectionDriver(String driver, String url, String user, String password, long timeout) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
 
 		DriverManager.registerDriver(this);
 		Class.forName(driver).newInstance();
-		pool = new JDCConnectionPool(url, user, password, timeout);
+		pool = new JdcConnectionPool(url, user, password, timeout);
 	}
 
-	public JDCConnectionPool getConnectionPool() {
+	public JdcConnectionPool getConnectionPool() {
 		return pool;
 	}
 

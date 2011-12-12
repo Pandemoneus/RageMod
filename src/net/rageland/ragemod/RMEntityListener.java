@@ -4,7 +4,7 @@ package net.rageland.ragemod;
 
 import java.util.Random;
 
-import net.rageland.ragemod.entity.npc.NPCHandler;
+import net.rageland.ragemod.entity.npc.NpcHandler;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -15,11 +15,11 @@ import org.bukkit.event.entity.EntityListener;
  * 
  * @author TheIcarusKid
  */
-public class RMEntityListener extends EntityListener {
+public class RmEntityListener extends EntityListener {
 	private final RageMod plugin;
 	private Random random;
 
-	public RMEntityListener(final RageMod plugin) {
+	public RmEntityListener(final RageMod plugin) {
 		this.plugin = plugin;
 		this.random = new Random();
 	}
@@ -29,7 +29,7 @@ public class RMEntityListener extends EntityListener {
 			return;
 		
 		final Entity defender = event.getEntity();
-		final NPCHandler eh = NPCHandler.getInstance();
+		final NpcHandler eh = NpcHandler.getInstance();
 		
 		if (defender instanceof HumanEntity) {
 			

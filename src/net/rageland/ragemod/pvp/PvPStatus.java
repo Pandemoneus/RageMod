@@ -1,6 +1,6 @@
 package net.rageland.ragemod.pvp;
 
-public enum PvPStatus {
+public enum PvpStatus {
 	PARTY("Party only"),
 	FACTION("Faction only"),
 	PEACE("None"),
@@ -9,7 +9,7 @@ public enum PvPStatus {
 	
 	private final String status;
 	
-	private PvPStatus(final String status) {
+	private PvpStatus(final String status) {
 		this.status = status;
 	}
 	

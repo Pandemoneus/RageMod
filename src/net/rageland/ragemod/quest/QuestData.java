@@ -1,6 +1,6 @@
 package net.rageland.ragemod.quest;
 
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 
 /**
  * Contains quest data, each quest contains an instance of this class.
@@ -81,7 +81,7 @@ public class QuestData
 		return objectiveCounter;
 	}
 	
-	public boolean isRequirementsMet(PlayerData playerData)
+	public boolean isRequirementsMet(PcData playerData)
 	{
 		return questReqs.requirementsMet(playerData);
 	}

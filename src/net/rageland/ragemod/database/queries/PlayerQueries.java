@@ -13,7 +13,7 @@ import org.bukkit.Location;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.database.DatabaseHandler;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
 public class PlayerQueries {

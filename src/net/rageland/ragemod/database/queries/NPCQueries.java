@@ -12,19 +12,19 @@ import java.util.Random;
 import org.bukkit.Location;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.database.DatabaseHandler;
-import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.npc.NPCPhrase;
-import net.rageland.ragemod.entity.npc.NPCSpeechData;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.npc.NpcData;
+import net.rageland.ragemod.entity.npc.NpcPhrase;
+import net.rageland.ragemod.entity.npc.NpcSpeechData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.text.Language;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
-public class NPCQueries {
+public class NpcQueries {
 	private DatabaseHandler rageDB;
 	private RageMod plugin;
 	private Random random;
 
-	public NPCQueries(DatabaseHandler rageDB, RageMod plugin) {
+	public NpcQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 		this.random = new Random();

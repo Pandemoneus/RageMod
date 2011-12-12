@@ -1,7 +1,7 @@
 package net.rageland.ragemod.commands;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 
 import org.bukkit.entity.Player;

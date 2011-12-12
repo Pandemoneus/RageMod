@@ -7,9 +7,9 @@ import org.bukkit.ChatColor;
 
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.SharedData;
-import net.rageland.ragemod.entity.npc.NPCData;
+import net.rageland.ragemod.entity.npc.NpcData;
 import net.rageland.ragemod.places.region.Region3D;
-import net.rageland.ragemod.pvp.PvPStatus;
+import net.rageland.ragemod.pvp.PvpStatus;
 import net.rageland.ragemod.text.Title;
 
 /**
@@ -25,10 +25,10 @@ public abstract class BasicPlace implements Place, Title {
 	private String name;
 	// TODO: Config based standard title color
 	private ChatColor nameColor = ChatColor.YELLOW;
-	private PvPStatus pvp = PvPStatus.PEACE;
+	private PvpStatus pvp = PvpStatus.PEACE;
 	
 	// NPCs
-	private final HashSet<NPCData> npcs = new HashSet<NPCData>();
+	private final HashSet<NpcData> npcs = new HashSet<NpcData>();
 	private final HashSet<SharedData> residents = new HashSet<SharedData>(); 
 	
 	// Messages
@@ -162,7 +162,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Adds a NPC to the place.
 	 * @param npc the NPC
 	 */
-	public void addNPC(final NPCData npc) {
+	public void addNPC(final NpcData npc) {
 		if (npc == null)
 			return;
 		
@@ -173,7 +173,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Removes a NPC from the place.
 	 * @param npc the NPC
 	 */
-	public void removeNPC(final NPCData npc) {
+	public void removeNPC(final NpcData npc) {
 		npcs.remove(npc);
 	}
 	
@@ -181,7 +181,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Returns the pvp status of the place.
 	 * @return the pvp status of the place
 	 */
-	public PvPStatus getPvpStatus() {
+	public PvpStatus getPvpStatus() {
 		return pvp;
 	}
 	
@@ -189,7 +189,7 @@ public abstract class BasicPlace implements Place, Title {
 	 * Sets the pvp status of the place.
 	 * @param status the status
 	 */
-	public void setPvpStatus(final PvPStatus status) {
+	public void setPvpStatus(final PvpStatus status) {
 		pvp = status;
 	}
 	

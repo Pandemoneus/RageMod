@@ -6,7 +6,7 @@ import java.util.HashSet;
 import net.milkbowl.vault.economy.Economy;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Owner;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.region.Region3D;
 import net.rageland.ragemod.pvp.Contestable;
 
@@ -87,10 +87,10 @@ public abstract class OwnedPlace extends BasicPlace implements Rentable, Contest
 		if (rent == 0.0)
 			return RentResult.NO_RENT;
 		
-		if (!(owner instanceof PlayerData))
+		if (!(owner instanceof PcData))
 			return RentResult.WRONG_OWNER_TYPE;
 		
-		final String playerName = ((PlayerData) owner).getName();
+		final String playerName = ((PcData) owner).getName();
 		final Economy economy = RageMod.economy;
 		
 		if (rent < 0.0) {

@@ -5,14 +5,16 @@ import net.rageland.ragemod.commands.CompassCommands;
 import net.rageland.ragemod.commands.DebugCommands;
 import net.rageland.ragemod.commands.FactionCommands;
 import net.rageland.ragemod.commands.LotCommands;
-import net.rageland.ragemod.commands.NPCCommands;
-import net.rageland.ragemod.commands.NPCTownCommands;
+import net.rageland.ragemod.commands.NpcCommands;
+import net.rageland.ragemod.commands.NpcTownCommands;
 import net.rageland.ragemod.commands.PermitCommands;
 import net.rageland.ragemod.commands.QuestCommands;
 import net.rageland.ragemod.commands.RageCommands;
 import net.rageland.ragemod.commands.TownCommands;
 import net.rageland.ragemod.data.PlayerTown;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.Race;
+import net.rageland.ragemod.entity.player.PcData;
+import net.rageland.ragemod.entity.player.PcHandler;
 import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 
@@ -35,8 +37,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
  * 
  * @author TheIcarusKid
  */
-public class RMPlayerListener extends PlayerListener {
-	private final RageMod plugin;
+public class RmPlayerListener extends PlayerListener {
 	/*private QuestCommands questCommands;
 	private CompassCommands compassCommands;
 	private LotCommands lotCommands;
@@ -49,8 +50,7 @@ public class RMPlayerListener extends PlayerListener {
 	private PermitCommands permitCommands;
 	private RageCommands rageCommands;*/
 
-	public RMPlayerListener(RageMod instance) {
-		plugin = instance;
+	public RmPlayerListener() {
 		/*questCommands = new QuestCommands(plugin);
 		compassCommands = new CompassCommands(plugin);
 		lotCommands = new LotCommands(plugin);
@@ -61,12 +61,18 @@ public class RMPlayerListener extends PlayerListener {
 		npcCommands = new NPCCommands(plugin);
 		npcTownCommands = new NPCTownCommands(plugin);
 		permitCommands = new PermitCommands(plugin);
-		rageCommands = new RageCommands(plugin);
+		rageCommands = new RageCommands(plugin);*/
 	}
 
-	// Pull the player data from the DB and register in memory
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
+	public void onPlayerJoin(final PlayerJoinEvent event) {
+		final Player player = event.getPlayer();
+		final String playerName = player.getName();
+		final PcHandler pcHandler = PcHandler.getInstance();
+		
+		if (!pcHandler.has(playerName)) {
+			pcHandler.addPlayerData(new PcData(playerName, Race.HUMAN));
+		}
+		/*
 		PlayerData playerData = plugin.players.playerLogin(player.getName());
 		playerData.attachPlayer(player);
 

@@ -13,11 +13,11 @@ import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.database.DatabaseHandler;
 
-public class NPCTownQueries {
+public class NpcTownQueries {
 	private DatabaseHandler rageDB;
 	private RageMod plugin;
 
-	public NPCTownQueries(DatabaseHandler rageDB, RageMod plugin) {
+	public NpcTownQueries(DatabaseHandler rageDB, RageMod plugin) {
 		this.rageDB = rageDB;
 		this.plugin = plugin;
 	}

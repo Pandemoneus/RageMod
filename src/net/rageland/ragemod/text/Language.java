@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.rageland.ragemod.entity.Race;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.ChatColor;
@@ -19,7 +19,6 @@ public class Language {
 	public final boolean isForeign;
 	private final ArrayList<ArrayList<String>> dictionary = new ArrayList<ArrayList<String>>(); // First index is word size
 	private final Pattern puncPattern = Pattern.compile("([^\\.\\,\\!\\?\\;\\:]*)([\\.\\,\\!\\?\\;\\:]*)$");
-	private final Random random = new Random();
 	
 	public static final int MAX_WORD_LENGTH = 12; 
 
@@ -53,6 +52,7 @@ public class Language {
 			toTranslate.add(i);
 
 		final int percentage = skillLevel >= 0 ? (total * skillLevel) / 100 : 0;
+		final Random random = new Random();
 		
 		while (toTranslate.size() > (percentage)) {
 			final int wordIndex = toTranslate.remove(random.nextInt(toTranslate.size()));
@@ -71,7 +71,7 @@ public class Language {
 		return join(split, " ");
 	}
 	
-	public String translate(final String source, final PlayerData player) {
+	public String translate(final String source, final PcData player) {
 		if (player == null)
 			return source;
 		
@@ -89,6 +89,7 @@ public class Language {
 
 		// Find the length of the word at the specified index
 		int wordLength = word.length();
+		final Random random = new Random();
 
 		if (wordLength > 0) {
 			// Cut all word lengths down to maximum word length
@@ -108,11 +109,21 @@ public class Language {
 			return "";
 	}
 
-	public static String join(final String[] array, final String delimiter) {
+	/**
+	 * Joins all Strings in an array with the delimiter inbetween.
+	 * This method returns an empty string when the passed array is null.
+	 * @param array the string array
+	 * @param delimiter the delimiter
+	 * @return the resulting String
+	 */
+	public static String join(final String[] array, String delimiter) {
 		final List<String> s = Arrays.asList(array);
 
 		if (s == null || s.isEmpty())
 			return "";
+		
+		if (delimiter == null)
+			delimiter = "";
 		
 		final Iterator<String> iter = s.iterator();
 		final StringBuilder sb = new StringBuilder(iter.next());
@@ -124,6 +135,9 @@ public class Language {
 		return sb.toString();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(final Object o) {
 		if (!(o instanceof Language))
@@ -139,9 +153,6 @@ public class Language {
 	 */
 	@Override
     public int hashCode() {
-		HashCodeBuilder hcb = new HashCodeBuilder();
-		hcb.append("Test");
-		hcb.append(isForeign);
-    	return hcb.toHashCode();
+    	return new HashCodeBuilder().append(name).append(isForeign).toHashCode();
     }
 }

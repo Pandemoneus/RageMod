@@ -3,7 +3,7 @@ package net.rageland.ragemod.quest;
 import java.util.HashSet;
 
 import net.rageland.ragemod.entity.Race;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 
 public interface Quest {
 
@@ -17,7 +17,7 @@ public interface Quest {
 	
 	public HashSet<Race> getAllowedRaces();
 	
-	public boolean isInProgress(PlayerData player);
+	public boolean isInProgress(PcData player);
 	
 	public boolean isRepeatable();
 }

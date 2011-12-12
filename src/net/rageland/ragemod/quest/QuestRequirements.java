@@ -1,6 +1,6 @@
 package net.rageland.ragemod.quest;
 
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 
 public class QuestRequirements
 {
@@ -20,7 +20,7 @@ public class QuestRequirements
 		this.reputation = reputation;
 	}
 	
-	public boolean requirementsMet(PlayerData playerData) {
+	public boolean requirementsMet(PcData playerData) {
 		// Perform check for whether a quest can be started.
 		return true;
 	}

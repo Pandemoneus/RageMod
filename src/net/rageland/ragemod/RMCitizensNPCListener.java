@@ -13,11 +13,12 @@ import net.citizensnpcs.api.event.npc.NPCCreateEvent;
 import net.citizensnpcs.api.event.npc.NPCListener;
 import net.citizensnpcs.api.event.npc.NPCCreateEvent.NPCCreateReason;
 import net.citizensnpcs.resources.npclib.HumanNPC;
-import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.npc.NPCHandler;
-import net.rageland.ragemod.entity.npc.NPCSpeechData;
+import net.rageland.ragemod.entity.npc.NpcData;
+import net.rageland.ragemod.entity.npc.NpcHandler;
+import net.rageland.ragemod.entity.npc.NpcSpeechData;
+import net.rageland.ragemod.entity.player.PcHandler;
 
-public class RMCitizensNPCListener extends NPCListener {
+public class RmCitizensNpcListener extends NPCListener {
 	
 	@Override
 	public void onNPCCreate(final NPCCreateEvent event) {
@@ -25,15 +26,15 @@ public class RMCitizensNPCListener extends NPCListener {
 		
 		if (event.getReason() == NPCCreateReason.COMMAND) {			
 			// we'll assume here that the handler doesn't have the uid for the NPC yet
-			final NPCData data = new NPCData(npc.getName(), npc.getUID(), null, null);
-			NPCHandler.getInstance().addNPCData(data);
+			final NpcData data = new NpcData(npc.getName(), npc.getUID(), null, null);
+			NpcHandler.getInstance().addNPCData(data);
 		}
 	}
 	
 	@Override
 	public void onNPCRemove(final NPCRemoveEvent event) {		
 		if (event.getReason() == NPCRemoveReason.COMMAND) {			
-			NPCHandler.getInstance().removeNPCData(event.getNPC().getUID());
+			NpcHandler.getInstance().removeNPCData(event.getNPC().getUID());
 		}
 	}
 	
@@ -42,15 +43,16 @@ public class RMCitizensNPCListener extends NPCListener {
 		final HumanNPC npc = event.getNPC();
 		final int uid = npc.getUID();
 		final Player player = event.getPlayer();
-		final NPCHandler handler = NPCHandler.getInstance();
+		final PcHandler pcHandler = PcHandler.getInstance();
+		final NpcHandler npcHandler = NpcHandler.getInstance();
 		
 		// see whether the NPC is one of our custom NPCs
-		if (handler.has(uid)) {
-			final NPCSpeechData speech = handler.getNPCData(uid).getSpeech();
+		if (npcHandler.has(uid)) {
+			final NpcSpeechData speech = npcHandler.getNPCData(uid).getSpeech();
 			
 			// see whether our NPC has text, otherwise just cancel the event
 			if (speech != null) {
-				
+				event.setText(speech.getInitialGreeting(pcHandler.getPlayerData(player.getName())));
 			} else {
 				event.setCancelled(true);
 			}

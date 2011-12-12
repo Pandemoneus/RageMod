@@ -4,14 +4,14 @@ import java.sql.*;
 import java.util.*;
 import java.util.concurrent.Executor;
 
-public class JDCConnection implements Connection {
+public class JdcConnection implements Connection {
 
-	private JDCConnectionPool pool;
+	private JdcConnectionPool pool;
 	private Connection conn;
 	private boolean inuse;
 	private long timestamp;
 
-	public JDCConnection(Connection conn, JDCConnectionPool pool) {
+	public JdcConnection(Connection conn, JdcConnectionPool pool) {
 		this.conn = conn;
 		this.pool = pool;
 		this.inuse = false;

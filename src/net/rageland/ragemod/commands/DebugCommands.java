@@ -3,7 +3,7 @@ package net.rageland.ragemod.commands;
 import java.util.ArrayList;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 import net.rageland.ragemod.utilities.GeneralUtilities;
 

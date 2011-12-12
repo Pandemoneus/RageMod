@@ -7,8 +7,8 @@ import net.milkbowl.vault.permission.Permission;
 import net.rageland.ragemod.data.Tasks;
 import net.rageland.ragemod.data.Towns;
 import net.rageland.ragemod.database.DatabaseHandler;
-import net.rageland.ragemod.entity.npc.NPCHandler;
-import net.rageland.ragemod.entity.player.PlayerHandler;
+import net.rageland.ragemod.entity.npc.NpcHandler;
+import net.rageland.ragemod.entity.player.PcHandler;
 import net.rageland.ragemod.factions.Faction;
 import net.rageland.ragemod.quest.QuestManager;
 import net.rageland.ragemod.text.Message;
@@ -32,11 +32,11 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class RageMod extends JavaPlugin {
 
-	private RMPlayerListener playerListener;
-	private RMBlockListener blockListener;
-	private RMEntityListener entityListener;
-	private RMCitizensListener citizensListener;
-	private RMCitizensNPCListener citizensNPCListener;
+	private RmPlayerListener playerListener;
+	private RmBlockListener blockListener;
+	private RmEntityListener entityListener;
+	private RmCitizensListener citizensListener;
+	private RmCitizensNpcListener citizensNPCListener;
 	private static RageMod instance;
 	private ModuleHandler modules;
 
@@ -47,7 +47,6 @@ public class RageMod extends JavaPlugin {
 	public String version;
 
 	// Global data
-	public PlayerHandler players;
 	public Towns towns;
 	public Tasks tasks;
 	public Faction factions;
@@ -132,7 +131,7 @@ public class RageMod extends JavaPlugin {
 	
 	private void registerHandlers() {
 		modules = ModuleHandler.getInstance();
-		modules.addHandler(NPCHandler.getInstance());
+		modules.addHandler(NpcHandler.getInstance());
 		modules.loadAll();
 	}
 
@@ -161,15 +160,14 @@ public class RageMod extends JavaPlugin {
 	}
 
 	private void initializeVariables() {
-		playerListener = new RMPlayerListener(this);
-		blockListener = new RMBlockListener(this);
-		entityListener = new RMEntityListener(this);
-		citizensListener = new RMCitizensListener();
-		citizensNPCListener = new RMCitizensNPCListener();
+		playerListener = new RmPlayerListener();
+		blockListener = new RmBlockListener(this);
+		entityListener = new RmEntityListener(this);
+		citizensListener = new RmCitizensListener();
+		citizensNPCListener = new RmCitizensNpcListener();
 		config = new RageConfig(this);
 		//database = new DatabaseHandler(this, config);
 
-		players = new PlayerHandler(this);
 		tasks = new Tasks(this);
 		factions = new Faction();
 

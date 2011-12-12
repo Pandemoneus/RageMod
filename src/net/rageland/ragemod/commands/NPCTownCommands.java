@@ -7,15 +7,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.data.PlayerTown;
-import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.npc.NpcData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 
-public class NPCTownCommands {
+public class NpcTownCommands {
 
 	private RageMod plugin;
 
-	public NPCTownCommands(RageMod plugin) {
+	public NpcTownCommands(RageMod plugin) {
 		this.plugin = plugin;
 	}
 

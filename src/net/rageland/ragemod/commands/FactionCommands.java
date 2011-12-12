@@ -5,7 +5,7 @@ package net.rageland.ragemod.commands;
 import java.util.HashMap;
 
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 
 import org.bukkit.entity.Player;
 

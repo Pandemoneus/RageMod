@@ -3,7 +3,7 @@ package net.rageland.ragemod;
 import java.util.HashMap;
 
 import net.rageland.ragemod.data.PlayerTown;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 
 import org.bukkit.Location;
@@ -20,10 +20,10 @@ import org.bukkit.event.block.BlockPlaceEvent;
  * 
  * @author TheIcarusKid
  */
-public class RMBlockListener extends BlockListener {
+public class RmBlockListener extends BlockListener {
 	private final RageMod plugin;
 
-	public RMBlockListener(final RageMod plugin) {
+	public RmBlockListener(final RageMod plugin) {
 		this.plugin = plugin;
 	}
 

@@ -9,16 +9,16 @@ import java.util.logging.Level;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import net.rageland.ragemod.RageMod;
-import net.rageland.ragemod.entity.npc.NPCData;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.npc.NpcData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 
-public class NPCCommands {
+public class NpcCommands {
 
 	private RageMod plugin;
 	private Random random;
 
-	public NPCCommands(RageMod plugin) {
+	public NpcCommands(RageMod plugin) {
 		this.plugin = plugin;
 		this.random = new Random();
 	}

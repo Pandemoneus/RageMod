@@ -2,7 +2,7 @@ package net.rageland.ragemod.entity.npc;
 
 import java.util.HashMap;
 
-public enum NPCType {
+public enum NpcType {
 	BASIC("Citizen"),
 	TRADER("Trader"),
 	SHOPKEEPER("Shopkeeper"),
@@ -12,13 +12,13 @@ public enum NPCType {
 	GUARD("Guard");
 	
 	private final String name;
-	private static final HashMap<String, NPCType> names = new HashMap<String, NPCType>();
+	private static final HashMap<String, NpcType> names = new HashMap<String, NpcType>();
 	
-	private NPCType(final String name) {
+	private NpcType(final String name) {
 		this.name = name;
 	}
 	
-	public static NPCType fromName(String name) {
+	public static NpcType fromName(String name) {
 		return names.get(name);
 	}
 	
@@ -27,7 +27,7 @@ public enum NPCType {
 	}
 	
 	static {
-		for (NPCType value : NPCType.values()) {
+		for (NpcType value : NpcType.values()) {
 			names.put(value.getName(), value);
 		}
 	}

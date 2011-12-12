@@ -7,7 +7,7 @@ import java.util.HashMap;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.data.TownLevel;
-import net.rageland.ragemod.entity.player.PlayerData;
+import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.places.owned.Town;
 
 import org.bukkit.entity.Player;
