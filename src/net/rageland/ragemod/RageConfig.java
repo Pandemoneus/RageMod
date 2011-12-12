@@ -11,6 +11,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 // Stores and loads configuration values
 public class RageConfig {
 
+	private boolean displayDebugMessages;
+	
+	
+	//OLD
 	/*
 	 * TODO: - Faction info?
 	 */

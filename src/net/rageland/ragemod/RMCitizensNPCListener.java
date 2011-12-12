@@ -34,7 +34,7 @@ public class RmCitizensNpcListener extends NPCListener {
 	@Override
 	public void onNPCRemove(final NPCRemoveEvent event) {		
 		if (event.getReason() == NPCRemoveReason.COMMAND) {			
-			NpcHandler.getInstance().removeNPCData(event.getNPC().getUID());
+			NpcHandler.getInstance().removeNpcData(event.getNPC().getUID());
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class RmCitizensNpcListener extends NPCListener {
 		
 		// see whether the NPC is one of our custom NPCs
 		if (npcHandler.has(uid)) {
-			final NpcSpeechData speech = npcHandler.getNPCData(uid).getSpeech();
+			final NpcSpeechData speech = npcHandler.getNpcData(uid).getSpeech();
 			
 			// see whether our NPC has text, otherwise just cancel the event
 			if (speech != null) {

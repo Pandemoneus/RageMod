@@ -3,6 +3,7 @@ package net.rageland.ragemod.utilities;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -179,6 +180,17 @@ public class GeneralUtilities {
 	 * @return true if the value is between, otherwise false
 	 */
 	public static boolean isBetween(final double toTest, final double min, final double max) {
+		return toTest >= min && toTest <= max;
+	}
+	
+	/**
+	 * Checks whether a value toTest is between the specified min and max.
+	 * @param toTest the value to test
+	 * @param min the minimum
+	 * @param max the maximum
+	 * @return true if the value is between, otherwise false
+	 */
+	public static boolean isBetween(final int toTest, final int min, final int max) {
 		return toTest >= min && toTest <= max;
 	}
 

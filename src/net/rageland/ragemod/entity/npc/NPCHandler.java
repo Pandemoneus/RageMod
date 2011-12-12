@@ -1,5 +1,6 @@
 package net.rageland.ragemod.entity.npc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,12 +52,16 @@ public final class NpcHandler implements Handler {
 		return true;
 	}
 	
-	public void removeNPCData(final int uid) {
+	public void removeNpcData(final int uid) {
 		npcs.remove(uid);
 	}
 	
-	public NpcData getNPCData(final int uid) {
+	public NpcData getNpcData(final int uid) {
 		return npcs.get(uid);
+	}
+	
+	public NpcSpeechData getNpcSpeechData(final String identifier) {
+		return speech.get(identifier);
 	}
 	
 	/**
@@ -100,18 +105,19 @@ public final class NpcHandler implements Handler {
 		final YamlConfiguration speechConf = speechConfig.config;
 		
 		try {
-			for (final String s : speechConf.getKeys(false)) {
-				if (!(speechConf.isConfigurationSection(s)))
+			for (final String identifier : speechConf.getKeys(false)) {
+				if (!(speechConf.isConfigurationSection(identifier)))
 					continue;
 				
-				final ConfigurationSection cs = speechConf.getConfigurationSection(s);
-				
+				final ConfigurationSection cs = speechConf.getConfigurationSection(identifier);
 				
 				final String initialGreeting = cs.getString("Greeting");
 				final List<String> messages = cs.getStringList("Messages");
 				final List<String> followUps = cs.getStringList("FollowUps");
 				
-				npcs.put(Integer.parseInt(s), NpcData.getDataFromConfigurationSection(cs));
+				final NpcSpeechData speechData = new NpcSpeechData(initialGreeting, new ArrayList<String>(messages), followUps.toArray(new String[5]));
+				
+				speech.put(identifier, speechData);
 			}
 		} catch (YAMLException yaml) {
 			Log.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_SPEECH);

@@ -69,7 +69,7 @@ public class PcHandler implements Handler {
 
 	@Override
 	public boolean loadData() {
-		final YamlConfiguration c = playerConfig.config;
+		/*final YamlConfiguration c = playerConfig.config;
 		int counter = 0;
 		
 		try {
@@ -79,7 +79,6 @@ public class PcHandler implements Handler {
 				
 				final ConfigurationSection cs = c.getConfigurationSection(s);
 				
-				npcs.put(Integer.parseInt(s), NpcData.getDataFromConfigurationSection(cs));
 				counter++;
 			}
 			
@@ -90,7 +89,9 @@ public class PcHandler implements Handler {
 			Log.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_NPC);
 			Log.getInstance().severe(yaml.getMessage());
 			return false;
-		}
+		}*/
+		
+		return true;
 	}
 	@Override
 	public boolean saveData() {

@@ -51,7 +51,7 @@ public class NpcData extends SharedData {
 	}
 	
 	public NpcSpeechData getSpeech() {
-		return NpcSpeechData.fromIdentifier(speechDataIdentifier);
+		return null;
 	}
 	
     public static NpcData getDataFromConfigurationSection(final ConfigurationSection section) {
