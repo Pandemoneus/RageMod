@@ -1,5 +1,7 @@
 package net.rageland.ragemod;
 
+import net.citizensnpcs.api.CitizensManager;
+import net.citizensnpcs.resources.npclib.HumanNPC;
 import net.rageland.ragemod.commands.Commands;
 import net.rageland.ragemod.commands.CompassCommands;
 import net.rageland.ragemod.commands.DebugCommands;
@@ -21,6 +23,7 @@ import net.rageland.ragemod.utilities.GeneralUtilities;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -69,8 +72,10 @@ public class RmPlayerListener extends PlayerListener {
 		final String playerName = player.getName();
 		final PcHandler pcHandler = PcHandler.getInstance();
 		
-		if (!pcHandler.has(playerName)) {
-			pcHandler.addPlayerData(new PcData(playerName, Race.HUMAN));
+		if (!CitizensManager.isNPC(player)) {
+			if (!pcHandler.has(playerName)) {
+				pcHandler.addPlayerData(new PcData(playerName, Race.HUMAN));
+			}
 		}
 		/*
 		PlayerData playerData = plugin.players.playerLogin(player.getName());

@@ -89,7 +89,7 @@ public class RageMod extends JavaPlugin {
 	}
 
 	public void onDisable() {
-		modules.saveAll();
+		if (modules != null) modules.saveAll();
 		getServer().getScheduler().cancelTasks(this);
 		Log.getInstance().info(new StringBuilder(name).append(" disabled.").toString());
 	}

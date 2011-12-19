@@ -1,7 +1,7 @@
 package net.rageland.ragemod;
 
-import net.citizensnpcs.api.event.citizens.CitizensDisableEvent;
-import net.citizensnpcs.api.event.citizens.CitizensListener;
+import net.citizensnpcs.api.event.CitizensDisableEvent;
+import net.citizensnpcs.api.event.CitizensListener;
 
 public class RmCitizensListener extends CitizensListener {
 

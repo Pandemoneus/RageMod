@@ -2,16 +2,16 @@ package net.rageland.ragemod;
 
 import org.bukkit.entity.Player;
 
-import net.citizensnpcs.api.event.npc.NPCInventoryOpenEvent;
-import net.citizensnpcs.api.event.npc.NPCRightClickEvent;
-import net.citizensnpcs.api.event.npc.NPCTargetEvent;
-import net.citizensnpcs.api.event.npc.NPCToggleTypeEvent;
-import net.citizensnpcs.api.event.npc.NPCRemoveEvent;
-import net.citizensnpcs.api.event.npc.NPCRemoveEvent.NPCRemoveReason;
-import net.citizensnpcs.api.event.npc.NPCTalkEvent;
-import net.citizensnpcs.api.event.npc.NPCCreateEvent;
-import net.citizensnpcs.api.event.npc.NPCListener;
-import net.citizensnpcs.api.event.npc.NPCCreateEvent.NPCCreateReason;
+import net.citizensnpcs.api.event.NPCCreateEvent;
+import net.citizensnpcs.api.event.NPCCreateEvent.NPCCreateReason;
+import net.citizensnpcs.api.event.NPCInventoryOpenEvent;
+import net.citizensnpcs.api.event.NPCListener;
+import net.citizensnpcs.api.event.NPCRemoveEvent;
+import net.citizensnpcs.api.event.NPCRemoveEvent.NPCRemoveReason;
+import net.citizensnpcs.api.event.NPCRightClickEvent;
+import net.citizensnpcs.api.event.NPCTalkEvent;
+import net.citizensnpcs.api.event.NPCTargetEvent;
+import net.citizensnpcs.api.event.NPCToggleTypeEvent;
 import net.citizensnpcs.resources.npclib.HumanNPC;
 import net.rageland.ragemod.entity.npc.NpcData;
 import net.rageland.ragemod.entity.npc.NpcHandler;

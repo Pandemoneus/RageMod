@@ -11,6 +11,7 @@ import net.rageland.ragemod.Configuration;
 import net.rageland.ragemod.Handler;
 import net.rageland.ragemod.ModuleHandler;
 import net.rageland.ragemod.RageMod;
+import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.npc.NpcData;
 import net.rageland.ragemod.entity.npc.NpcHandler;
 import net.rageland.ragemod.utilities.Log;
@@ -69,7 +70,7 @@ public class PcHandler implements Handler {
 
 	@Override
 	public boolean loadData() {
-		/*final YamlConfiguration c = playerConfig.config;
+		final YamlConfiguration c = playerConfig.config;
 		int counter = 0;
 		
 		try {
@@ -77,7 +78,10 @@ public class PcHandler implements Handler {
 				if (!(c.isConfigurationSection(s)))
 					continue;
 				
-				final ConfigurationSection cs = c.getConfigurationSection(s);
+				final ConfigurationSection section = c.getConfigurationSection(s);
+				
+				final String name = section.getString("name");
+		    	final Race race = Race.fromName(section.getString("race"));
 				
 				counter++;
 			}
@@ -89,9 +93,7 @@ public class PcHandler implements Handler {
 			Log.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_NPC);
 			Log.getInstance().severe(yaml.getMessage());
 			return false;
-		}*/
-		
-		return true;
+		}
 	}
 	@Override
 	public boolean saveData() {
