@@ -1,39 +1,12 @@
 package net.rageland.ragemod;
 
 import net.citizensnpcs.api.CitizensManager;
-import net.citizensnpcs.resources.npclib.HumanNPC;
-import net.rageland.ragemod.commands.Commands;
-import net.rageland.ragemod.commands.CompassCommands;
-import net.rageland.ragemod.commands.DebugCommands;
-import net.rageland.ragemod.commands.FactionCommands;
-import net.rageland.ragemod.commands.LotCommands;
-import net.rageland.ragemod.commands.NpcCommands;
-import net.rageland.ragemod.commands.NpcTownCommands;
-import net.rageland.ragemod.commands.PermitCommands;
-import net.rageland.ragemod.commands.QuestCommands;
-import net.rageland.ragemod.commands.RageCommands;
-import net.rageland.ragemod.commands.TownCommands;
-import net.rageland.ragemod.data.PlayerTown;
 import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.player.PcData;
 import net.rageland.ragemod.entity.player.PcHandler;
-import net.rageland.ragemod.places.owned.Town;
-import net.rageland.ragemod.utilities.GeneralUtilities;
-
-import org.bukkit.ChatColor;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 
 /**
  * Handle events for all Player related events
