@@ -12,7 +12,8 @@ import net.rageland.ragemod.entity.player.PcHandler;
 import net.rageland.ragemod.factions.Faction;
 import net.rageland.ragemod.quest.QuestManager;
 import net.rageland.ragemod.text.Message;
-import net.rageland.ragemod.utilities.Log;
+import net.rageland.ragemod.utilities.PluginLogger;
+import net.rageland.ragemod.utilities.PluginLogger.PluginLoggerMode;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.bukkit.Bukkit;
@@ -64,16 +65,16 @@ public class RageMod extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		registerPluginInfo();
-		new Log(this);
+		new PluginLogger(this, PluginLoggerMode.MINECRAFT);
 		
 		if (!setupPermission()) {
-			Log.getInstance().severe("No valid permission-supporting plugin detected! Disabling plugin...");
+			PluginLogger.getInstance().severe("No valid permission-supporting plugin detected! Disabling plugin...");
 			this.setEnabled(false);
 			return;
 		}
 
 		if (!setupEconomy()) {
-			Log.getInstance().severe("No valid economy-supporting plugin detected! Disabling plugin...");
+			PluginLogger.getInstance().severe("No valid economy-supporting plugin detected! Disabling plugin...");
 			this.setEnabled(false);
 			return;
 		}
@@ -85,13 +86,13 @@ public class RageMod extends JavaPlugin {
 		loadDatabaseData();
 		startScheduledTasks();
 
-		Log.getInstance().info(new StringBuilder(name).append(" loaded without errors.").toString());
+		PluginLogger.getInstance().info(new StringBuilder(name).append(" loaded without errors.").toString());
 	}
 
 	public void onDisable() {
 		if (modules != null) modules.saveAll();
 		getServer().getScheduler().cancelTasks(this);
-		Log.getInstance().info(new StringBuilder(name).append(" disabled.").toString());
+		PluginLogger.getInstance().info(new StringBuilder(name).append(" disabled.").toString());
 	}
 	
 	public static RageMod getInstance() {
