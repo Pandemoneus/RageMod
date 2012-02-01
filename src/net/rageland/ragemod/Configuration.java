@@ -3,26 +3,31 @@ package net.rageland.ragemod;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import net.rageland.ragemod.utilities.Log;
 
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class Configuration {
-	public final RageMod plugin;
-	public final File file;
-	public YamlConfiguration config;
+	private final JavaPlugin plugin;
+	private final File file;
+	private YamlConfiguration config;
 	
-	public Configuration(final RageMod plugin, final String fileName) {
+	/**
+	 * Creates a new configuration together with its own file.
+	 * @param plugin the plugin the configuration belongs to
+	 * @param fileName the name of the file, should end with .yml
+	 */
+	public Configuration(final JavaPlugin plugin, final String fileName) {
 		this.plugin = plugin;
 		file = new File(plugin.getDataFolder(), fileName);
 		
 		reload();
 	}
 	
+	/**
+	 * Reloads the configuration from disk.
+	 */
 	public void reload() {
 		config = YamlConfiguration.loadConfiguration(file);
 		 
@@ -34,6 +39,10 @@ public class Configuration {
 	    }
 	}
 	
+	/**
+	 * Saves the configuration to the disk.
+	 * @return true if successful
+	 */
 	public boolean save() {
 		try {
 	        config.save(file);
@@ -43,5 +52,13 @@ public class Configuration {
 	        Log.getInstance().severe(ex.getMessage());
 	        return false;
 	    }
+	}
+	
+	/**
+	 * Returns the YamlConfiguration.
+	 * @return the YamlConfiguration
+	 */
+	public YamlConfiguration getYamlConfig() {
+		return config;
 	}
 }
