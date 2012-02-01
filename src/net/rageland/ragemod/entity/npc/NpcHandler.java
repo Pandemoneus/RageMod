@@ -13,7 +13,7 @@ import net.rageland.ragemod.Handler;
 import net.rageland.ragemod.ModuleHandler;
 import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.utilities.ConfigurationUtilities;
-import net.rageland.ragemod.utilities.Log;
+import net.rageland.ragemod.utilities.PluginLogger;
 
 public final class NpcHandler implements Handler {
 	private final HashMap<Integer, NpcData> npcs = new HashMap<Integer, NpcData>();
@@ -80,7 +80,7 @@ public final class NpcHandler implements Handler {
 		boolean success = true;
 		
 		//NPCData
-		final YamlConfiguration npcConf = npcConfig.config;
+		final YamlConfiguration npcConf = npcConfig.getYamlConfig();
 		int counter = 0;
 		
 		try {
@@ -94,15 +94,15 @@ public final class NpcHandler implements Handler {
 				counter++;
 			}
 			
-			Log.getInstance().info(new StringBuilder("Loaded ").append(counter).append(" NPCs.").toString());
+			PluginLogger.getInstance().info(new StringBuilder("Loaded ").append(counter).append(" NPCs.").toString());
 		} catch (YAMLException yaml) {
-			Log.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_NPC);
-			Log.getInstance().severe(yaml.getMessage());
+			PluginLogger.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_NPC);
+			PluginLogger.getInstance().severe(yaml.getMessage());
 			success = false;
 		}
 		
 		//SpeechData
-		final YamlConfiguration speechConf = speechConfig.config;
+		final YamlConfiguration speechConf = speechConfig.getYamlConfig();
 		
 		try {
 			for (final String identifier : speechConf.getKeys(false)) {
@@ -120,8 +120,8 @@ public final class NpcHandler implements Handler {
 				speech.put(identifier, speechData);
 			}
 		} catch (YAMLException yaml) {
-			Log.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_SPEECH);
-			Log.getInstance().severe(yaml.getMessage());
+			PluginLogger.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_SPEECH);
+			PluginLogger.getInstance().severe(yaml.getMessage());
 			success = false;
 		}
 		
@@ -130,7 +130,7 @@ public final class NpcHandler implements Handler {
 	
 	@Override
 	public boolean saveData() {
-		final YamlConfiguration c = npcConfig.config;
+		final YamlConfiguration c = npcConfig.getYamlConfig();
 		int counter = 0;
 		
 		try {
@@ -141,12 +141,12 @@ public final class NpcHandler implements Handler {
 			}
 			
 			npcConfig.save();
-			Log.getInstance().info(new StringBuilder("Saved ").append(counter).append(" NPCs.").toString());
+			PluginLogger.getInstance().info(new StringBuilder("Saved ").append(counter).append(" NPCs.").toString());
 			
 			return true;
 		} catch (YAMLException yaml) {
-			Log.getInstance().severe("Failed saving the configuration for " + CONFIG_NAME_NPC);
-			Log.getInstance().severe(yaml.getMessage());
+			PluginLogger.getInstance().severe("Failed saving the configuration for " + CONFIG_NAME_NPC);
+			PluginLogger.getInstance().severe(yaml.getMessage());
 			return false;
 		}
 	}

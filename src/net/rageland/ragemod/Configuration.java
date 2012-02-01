@@ -3,8 +3,10 @@ package net.rageland.ragemod;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import net.rageland.ragemod.utilities.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +31,9 @@ public class Configuration {
 	 * Reloads the configuration from disk.
 	 */
 	public void reload() {
+		if (!checkMemberVariables())
+			throw new IllegalStateException("Neither plugin nor the file to be used must be null.");
+			
 		config = YamlConfiguration.loadConfiguration(file);
 		 
 		final InputStream defaultStream = plugin.getResource(file.getName());
@@ -44,12 +49,14 @@ public class Configuration {
 	 * @return true if successful
 	 */
 	public boolean save() {
+		if (!checkMemberVariables())
+			throw new IllegalStateException("Neither plugin nor the file to be used must be null.");
+		
 		try {
 	        config.save(file);
 	        return true;
 	    } catch (IOException ex) {
-	        Log.getInstance().severe("Failed saving configuration to" + file);
-	        Log.getInstance().severe(ex.getMessage());
+	    	Bukkit.getLogger().log(Level.SEVERE, new StringBuilder("[").append(plugin.toString()).append("] Failed saving configuration to ").append(file.toString()).toString(), ex);
 	        return false;
 	    }
 	}
@@ -60,5 +67,9 @@ public class Configuration {
 	 */
 	public YamlConfiguration getYamlConfig() {
 		return config;
+	}
+	
+	private boolean checkMemberVariables() {
+		return (plugin != null && file != null);
 	}
 }

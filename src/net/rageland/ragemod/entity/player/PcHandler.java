@@ -14,7 +14,7 @@ import net.rageland.ragemod.RageMod;
 import net.rageland.ragemod.entity.Race;
 import net.rageland.ragemod.entity.npc.NpcData;
 import net.rageland.ragemod.entity.npc.NpcHandler;
-import net.rageland.ragemod.utilities.Log;
+import net.rageland.ragemod.utilities.PluginLogger;
 
 public class PcHandler implements Handler {
 	private final HashMap<String, PcData> players = new HashMap<String, PcData>();
@@ -70,7 +70,7 @@ public class PcHandler implements Handler {
 
 	@Override
 	public boolean loadData() {
-		final YamlConfiguration c = playerConfig.config;
+		final YamlConfiguration c = playerConfig.getYamlConfig();
 		int counter = 0;
 		
 		try {
@@ -86,12 +86,12 @@ public class PcHandler implements Handler {
 				counter++;
 			}
 			
-			Log.getInstance().info(new StringBuilder("Loaded ").append(counter).append(" entities.").toString());
+			PluginLogger.getInstance().info(new StringBuilder("Loaded ").append(counter).append(" entities.").toString());
 			
 			return true;
 		} catch (YAMLException yaml) {
-			Log.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_NPC);
-			Log.getInstance().severe(yaml.getMessage());
+			PluginLogger.getInstance().severe("Failed loading the configuration for " + CONFIG_NAME_NPC);
+			PluginLogger.getInstance().severe(yaml.getMessage());
 			return false;
 		}
 	}
